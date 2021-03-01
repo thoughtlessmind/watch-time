@@ -1,0 +1,103 @@
+{
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2021
+  },
+  "parser": "@babel/eslint-parser",
+  "env": {
+    "node": true,
+    "commonjs": true,
+    "browser": true
+  },
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "airbnb/hooks",
+    "prettier",
+    "prettier/react"
+  ],
+  "plugins": [
+    "@babel",
+    "react",
+    "react-hooks",
+    "jsx-a11y",
+    "import",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "warn",
+      {
+        "semi": false,
+        "tabWidth": 2,
+        "endOfLine": "auto",
+        "printWidth": 80,
+        "singleQuote": false,
+        "jsxSingleQuote": true,
+        "trailingComma": "none",
+        "parser": "babel"
+      }
+    ],
+    "no-unused-vars": "warn",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "linebreak-style": "off",
+    "object-curly-newline": "off",
+    // [
+    //   "warn",
+    //   {
+    //     "ObjectExpression": "always",
+    //     "ObjectPattern": {
+    //       "multiline": true
+    //     },
+    //     "ImportDeclaration": {
+    //       "multiline": true,
+    //       "minProperties": 2
+    //     },
+    //     "ExportDeclaration": {
+    //       "multiline": true,
+    //       "minProperties": 
+    //     }
+    //   }
+    // ],
+    "quotes": "off",
+    "no-use-before-define": "warn",
+    "no-trailing-spaces": [
+      "warn",
+      {
+        "skipBlankLines": true
+      }
+    ],
+    "comma-dangle": "off",
+    "semi": "off",
+    "no-shadow": [
+      "warn",
+      {
+        "builtinGlobals": false,
+        "hoist": "functions",
+        "allow": []
+      }
+    ],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "src"
+        ]
+      }
+    }
+  }
+}
