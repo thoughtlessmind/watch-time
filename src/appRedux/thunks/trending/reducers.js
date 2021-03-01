@@ -1,3 +1,5 @@
+import produce from "immer"
+
 const initialState = {
   loading: false,
   error: null,
@@ -10,7 +12,7 @@ export const TRENDING = {
   ERROR: "TRENDING_FETCHING_ERROR"
 }
 
-const trendingReducer = (state = initialState, action) => {
+const trendingReducer1 = (state = initialState, action) => {
   switch (action.type) {
     case TRENDING.FETCHING:
       return { ...state, loading: true, error: null }
@@ -22,5 +24,21 @@ const trendingReducer = (state = initialState, action) => {
       return state
   }
 }
+
+const trendingReducer = produce((draft, action) => {
+  switch (action.type) {
+    case TRENDING.FETCHING:
+      draft.loading = true
+      break
+
+    case TRENDING.FETCHED:
+      draft.loading = false
+      draft.data = action.payload
+      break
+
+    default:
+      return draft
+  }
+}, initialState)
 
 export default trendingReducer
