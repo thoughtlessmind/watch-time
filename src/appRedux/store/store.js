@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import { createStore, applyMiddleware, compose } from "redux"
 import thunk from "redux-thunk"
-import { rootReducer } from "appRedux"
+import { rootReducer } from "appRedux/store"
 
 const configureStore = () => {
   const middlewares = [thunk]

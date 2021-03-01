@@ -1,4 +1,4 @@
-import { configureStore } from "appRedux"
+import { configureStore } from "appRedux/store"
 import { Provider } from "react-redux"
 import Routes from "Routes/Routes"
 import "tailwindcss/tailwind.css"

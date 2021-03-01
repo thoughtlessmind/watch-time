@@ -27,7 +27,7 @@ if (process.env.SERVE) {
 module.exports = {
   mode: mode,
   target: target,
-  entry: "./src/index.js",
+  entry: ["regenerator-runtime/runtime", "./src/index.js"],
   output: {
     path: path.resolve(__dirname, "dist/"),
     assetModuleFilename: "image/[hash][ext][query]"
