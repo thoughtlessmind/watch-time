@@ -6,7 +6,7 @@ const App = (props) => {
   return (
     <div>
       <Header />
-      <div className='md:px-12 sm:px-4 mt-16 pt-4'>{children}</div>
+      <div className='md:px-12 sm:px-4 px-2 mt-16 pt-4'>{children}</div>
     </div>
   )
 }
