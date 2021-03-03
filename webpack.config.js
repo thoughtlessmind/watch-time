@@ -28,7 +28,7 @@ const plugins = [
     template: "./src/index.html"
   }),
   new CopyPlugin({
-    patterns: [{ from: "./src/_redirects", to: "dest" }]
+    patterns: [{ from: "./src/_redirects", to: "" }]
   }),
   new Dotenv({ systemvars: true }),
   new webpack.DefinePlugin(envKeys)
