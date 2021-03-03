@@ -1,9 +1,16 @@
+import { fetchTrending } from "appRedux/thunks/trending/actions"
 import MediaFlashCard from "components/MediaFlashCard"
-import { useSelector } from "react-redux"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import "./trending.css"
 
 const Trending = () => {
+  const dispatch = useDispatch()
   const trendingData = useSelector((state) => state.trending)
+
+  useEffect(() => {
+    dispatch(fetchTrending())
+  }, [])
 
   return (
     <div>

@@ -1,10 +1,12 @@
 /* eslint-disable */
 const path = require("path");
 const dotenv = require("dotenv")
+const Dotenv = require('dotenv-webpack');
 const webpack = require("webpack")
 const MiniCssExractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 let mode = "development";
@@ -12,7 +14,7 @@ let target = "web";
 
 const env = dotenv.config().parsed
 
-const envKeys = Object.keys(env).reduce((prev, next) => {
+const envKeys = env && Object.keys(env).reduce((prev, next) => {
   prev[`process.env.${next}`] = JSON.stringify(env[next])
   return prev
 }, {})
@@ -24,6 +26,12 @@ const plugins = [
   new HtmlWebpackPlugin({
     template: "./src/index.html"
   }),
+  new CopyPlugin({
+    patterns: [
+      { from: "./src/_redirects", to: "dest" }
+    ],
+  }),
+  new Dotenv({systemvars:true}),
   new webpack.DefinePlugin(envKeys)
 ]
 
@@ -43,7 +51,8 @@ module.exports = {
   entry: ["regenerator-runtime/runtime", "./src/index.js"],
   output: {
     path: path.resolve(__dirname, "dist/"),
-    assetModuleFilename: "image/[hash][ext][query]"
+    assetModuleFilename: "image/[hash][ext][query]",
+    publicPath:'/'
   },
   module: {
     rules: [
@@ -106,6 +115,7 @@ module.exports = {
     hot: true,
     open: true,
     port: 3000,
+    historyApiFallback: true,
     overlay: {
       errors: true,
       warnings: true
