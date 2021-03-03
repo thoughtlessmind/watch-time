@@ -1,24 +1,25 @@
 /* eslint-disable */
-const path = require("path");
+const path = require("path")
 const dotenv = require("dotenv")
-const Dotenv = require('dotenv-webpack');
+const Dotenv = require("dotenv-webpack")
 const webpack = require("webpack")
-const MiniCssExractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
-const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+const MiniCssExractPlugin = require("mini-css-extract-plugin")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
+const CopyPlugin = require("copy-webpack-plugin")
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin")
 
-let mode = "development";
-let target = "web";
+let mode = "development"
+let target = "web"
 
 const env = dotenv.config().parsed
 
-const envKeys = env && Object.keys(env).reduce((prev, next) => {
-  prev[`process.env.${next}`] = JSON.stringify(env[next])
-  return prev
-}, {})
-
+const envKeys = env
+  ? Object.keys(env).reduce((prev, next) => {
+      prev[`process.env.${next}`] = JSON.stringify(env[next])
+      return prev
+    }, {})
+  : {}
 
 const plugins = [
   new CleanWebpackPlugin(),
@@ -27,23 +28,19 @@ const plugins = [
     template: "./src/index.html"
   }),
   new CopyPlugin({
-    patterns: [
-      { from: "./src/_redirects", to: "dest" }
-    ],
+    patterns: [{ from: "./src/_redirects", to: "dest" }]
   }),
-  new Dotenv({systemvars:true}),
+  new Dotenv({ systemvars: true }),
   new webpack.DefinePlugin(envKeys)
 ]
 
 if (process.env.NODE_ENV === "production") {
-  mode = "production";
-  target = "browserslist";
+  mode = "production"
+  target = "browserslist"
 }
 if (process.env.SERVE) {
-  plugins.push(new ReactRefreshWebpackPlugin());
+  plugins.push(new ReactRefreshWebpackPlugin())
 }
-
-
 
 module.exports = {
   mode: mode,
@@ -52,7 +49,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist/"),
     assetModuleFilename: "image/[hash][ext][query]",
-    publicPath:'/'
+    publicPath: "/"
   },
   module: {
     rules: [
