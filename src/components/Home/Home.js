@@ -17,6 +17,7 @@ import SwiperCore, {
 import { fetchTrending } from "appRedux/thunks/trending/actions"
 import MediaFlashCard from "components/MediaFlashCard"
 import { FaAngleRight } from "react-icons/fa"
+import { Link } from "react-router-dom"
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Controller])
 
@@ -34,9 +35,9 @@ const Home = () => {
     <div>
       <div className='mb-2 flex justify-between'>
         <h3 className='text-2xl font-semibold mb-2'>Trending</h3>
-        <p className="flex items-center">
+        <Link to='/trending' className='flex items-center'>
           Vew All <FaAngleRight />{" "}
-        </p>
+        </Link>
       </div>
       {/* <div className=''></div> */}
       {trendingData.loading ? (

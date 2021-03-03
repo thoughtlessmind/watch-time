@@ -1,4 +1,5 @@
 import Home from "components/Home"
+import Trending from "components/Trending"
 // import { App } from "containers"
 import App from "containers/App/App"
 import { Switch, BrowserRouter, Route } from "react-router-dom"
@@ -9,8 +10,11 @@ const Routes = () => {
     <BrowserRouter>
       <App>
         <Switch>
-          <Route path='/'>
+          <Route exact path='/'>
             <Home />
+          </Route>
+          <Route path='/trending'>
+            <Trending />
           </Route>
         </Switch>
       </App>

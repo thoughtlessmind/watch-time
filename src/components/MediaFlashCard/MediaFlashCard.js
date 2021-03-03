@@ -9,7 +9,7 @@ const MediaFlashCard = (props) => {
     return `${arr[1]} ${arr[3]}`
   }
   return (
-    <div className='w-48 p-2 bg-gray-400 rounded shadow-xl cursor-pointer hover:shadow-2xl transition-shadow'>
+    <div className='md:w-52 w-44 p-2 bg-gray-400 rounded shadow-xl cursor-pointer hover:shadow-2xl transition-shadow'>
       <img
         className='h-64 w-48 object-cover rounded'
         src={`https://image.tmdb.org/t/p/w500/${cardData.poster_path}`}
@@ -30,10 +30,10 @@ const MediaFlashCard = (props) => {
 
 MediaFlashCard.propTypes = {
   cardData: PropTypes.shape({
-    poster_path: PropTypes.string.isRequired,
-    original_title: PropTypes.string.isRequired,
-    original_name: PropTypes.string.isRequired,
-    vote_average: PropTypes.number.isRequired,
+    poster_path: PropTypes.string,
+    original_title: PropTypes.string,
+    original_name: PropTypes.string,
+    vote_average: PropTypes.number,
     release_date: PropTypes.string,
     first_air_date: PropTypes.string
   }).isRequired
