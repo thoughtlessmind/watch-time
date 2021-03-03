@@ -1,5 +1,7 @@
 /* eslint-disable */
 const path = require("path");
+const dotenv = require("dotenv")
+const webpack = require("webpack")
 const MiniCssExractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -8,13 +10,22 @@ const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin"
 let mode = "development";
 let target = "web";
 
+const env = dotenv.config().parsed
+
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next])
+  return prev
+}, {})
+
+
 const plugins = [
   new CleanWebpackPlugin(),
   new MiniCssExractPlugin(),
   new HtmlWebpackPlugin({
-    template: "./src/index.html",
+    template: "./src/index.html"
   }),
-];
+  new webpack.DefinePlugin(envKeys)
+]
 
 if (process.env.NODE_ENV === "production") {
   mode = "production";
@@ -23,6 +34,8 @@ if (process.env.NODE_ENV === "production") {
 if (process.env.SERVE) {
   plugins.push(new ReactRefreshWebpackPlugin());
 }
+
+
 
 module.exports = {
   mode: mode,
