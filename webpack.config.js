@@ -8,8 +8,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const CopyPlugin = require("copy-webpack-plugin")
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin")
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin
+// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+//   .BundleAnalyzerPlugin
 
 const TerserPlugin = require("terser-webpack-plugin")
 
@@ -35,8 +35,8 @@ const plugins = [
     patterns: [{ from: "./src/_redirects", to: "" }]
   }),
   new Dotenv({ systemvars: true }),
-  new webpack.DefinePlugin(envKeys),
-  new BundleAnalyzerPlugin()
+  new webpack.DefinePlugin(envKeys)
+  // new BundleAnalyzerPlugin()
 ]
 
 if (process.env.NODE_ENV === "production") {
@@ -128,7 +128,6 @@ module.exports = {
     },
     minimizer: [
       new TerserPlugin({
-        parallel: true,
         terserOptions: {
           output: {
             comments: false
