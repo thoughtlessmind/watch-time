@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react"
 import "swiper/swiper-bundle.min.css"
-// import "swiper/swiper.scss"
-// import "swiper/components/navigation/navigation.scss"
-// import "swiper/components/pagination/pagination.scss"
-// import "swiper/components/scrollbar/scrollbar.scss"
 import { useDispatch, useSelector } from "react-redux"
 import { Swiper, SwiperSlide } from "swiper/react"
-
 import SwiperCore, {
   Navigation,
   Pagination,
@@ -24,8 +19,6 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Controller])
 const Home = () => {
   const dispatch = useDispatch()
   const trendingData = useSelector((state) => state.trending)
-
-  const [thumbsSwiper, setThumbsSwiper] = useState(null)
 
   useEffect(() => {
     dispatch(fetchTrending())
@@ -64,11 +57,9 @@ const Home = () => {
           controller
           // pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
           // key={item.id}
         >
-          {trendingData.data?.results?.map((item, index) => (
+          {trendingData.data?.results?.[1]?.map((item, index) => (
             <SwiperSlide key={item.id}>
               <MediaFlashCard cardData={item} />
             </SwiperSlide>

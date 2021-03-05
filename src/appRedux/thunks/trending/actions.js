@@ -12,12 +12,15 @@ import { TRENDING } from "./reducers"
 //   dispatch({ type: TRENDING.FETCHED, payload: res.data })
 // }
 
-export const fetchTrending = () => {
+export const fetchTrending = (page = 1) => {
   return async (dispatch) => {
     dispatch({ type: TRENDING.FETCHING })
     const res = await axios({
       method: "GET",
-      url: "/trending/all/day"
+      url: "/trending/all/day",
+      params: {
+        page
+      }
     })
     dispatch({ type: TRENDING.FETCHED, payload: res.data })
   }

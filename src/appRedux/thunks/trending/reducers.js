@@ -3,26 +3,17 @@ import produce from "immer"
 const initialState = {
   loading: false,
   error: null,
-  data: []
+  data: {
+    page: 0,
+    results: {}
+  },
+  page: 0
 }
 
 export const TRENDING = {
   FETCHING: "FETCHING_TRENDING",
   FETCHED: "FETCHED_TRENDING",
   ERROR: "TRENDING_FETCHING_ERROR"
-}
-
-const trendingReducer1 = (state = initialState, action) => {
-  switch (action.type) {
-    case TRENDING.FETCHING:
-      return { ...state, loading: true, error: null }
-
-    case TRENDING.FETCHED:
-      return { ...state, loading: false, error: null, data: action.payload }
-
-    default:
-      return state
-  }
 }
 
 const trendingReducer = produce((draft, action) => {
@@ -33,7 +24,9 @@ const trendingReducer = produce((draft, action) => {
 
     case TRENDING.FETCHED:
       draft.loading = false
-      draft.data = action.payload
+      draft.data.page = action.payload.page
+      // draft.data.push(action.payload.results)
+      draft.data.results[action.payload.page] = action.payload.results
       break
 
     default:

@@ -3,7 +3,7 @@ module.exports = {
     enabled: true,
     content: ["./src/**/*.js"],
     options: {
-      keyframes: true,
+      keyframes: true
     }
   },
   darkMode: false, // or 'media' or 'class'
