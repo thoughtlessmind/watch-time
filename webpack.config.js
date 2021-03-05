@@ -8,6 +8,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const CopyPlugin = require("copy-webpack-plugin")
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin")
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin
+
+const TerserPlugin = require("terser-webpack-plugin")
 
 let mode = "development"
 let target = "web"
@@ -31,7 +35,8 @@ const plugins = [
     patterns: [{ from: "./src/_redirects", to: "" }]
   }),
   new Dotenv({ systemvars: true }),
-  new webpack.DefinePlugin(envKeys)
+  new webpack.DefinePlugin(envKeys),
+  new BundleAnalyzerPlugin()
 ]
 
 if (process.env.NODE_ENV === "production") {
@@ -104,6 +109,40 @@ module.exports = {
       globalComponents: path.resolve(__dirname, "src", "globalComponents"),
       resources: path.resolve(__dirname, "src", "resources")
     }
+  },
+
+  optimization: {
+    runtimeChunk: "single",
+    splitChunks: {
+      chunks: "all",
+      maxInitialRequests: Infinity,
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: (module) =>
+            `vendor.${
+              module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
+            }`
+        }
+      }
+    },
+    minimizer: [
+      new TerserPlugin({
+        parallel: true,
+        terserOptions: {
+          output: {
+            comments: false
+          }
+        }
+      })
+    ]
+  },
+
+  stats: {
+    // Examine all modules
+    moduleAssets: true,
+    // Display bailout reasons
+    optimizationBailout: true
   },
 
   devtool: "source-map",

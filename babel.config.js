@@ -6,7 +6,8 @@ if (process.env.SERVE) {
 
 module.exports = {
   presets: [
-    "@babel/preset-env",
+    // "@babel/preset-env",
+    ["@babel/preset-env", { modules: false }],
     ["@babel/preset-react", { runtime: "automatic" }]
   ],
   plugins
