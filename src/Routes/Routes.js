@@ -1,4 +1,5 @@
 import Home from "components/Home"
+import TopMovies from "components/TopMovies"
 import Trending from "components/Trending"
 // import { App } from "containers"
 import App from "containers/App/App"
@@ -15,6 +16,9 @@ const Routes = () => {
           </Route>
           <Route path='/trending'>
             <Trending />
+          </Route>
+          <Route path='/top-movies'>
+            <TopMovies />
           </Route>
         </Switch>
       </App>

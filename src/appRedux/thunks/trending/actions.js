@@ -12,9 +12,9 @@ import { TRENDING } from "./reducers"
 //   dispatch({ type: TRENDING.FETCHED, payload: res.data })
 // }
 
-export const fetchTrending = (page = 1) => {
+export const fetchAllTrending = (page = 1) => {
   return async (dispatch) => {
-    dispatch({ type: TRENDING.FETCHING })
+    dispatch({ type: TRENDING.FETCHING.ALL })
     const res = await axios({
       method: "GET",
       url: "/trending/all/day",
@@ -22,6 +22,24 @@ export const fetchTrending = (page = 1) => {
         page
       }
     })
-    dispatch({ type: TRENDING.FETCHED, payload: res.data })
+    dispatch({ type: TRENDING.FETCHED.ALL, payload: res.data })
+  }
+}
+
+/**
+ * Fetch the trending movies
+ * @param {String | Number} page page number
+ */
+export const fetchTrendingMovies = (page = 1) => {
+  return async (dispatch) => {
+    dispatch({ type: TRENDING.FETCHING.MOVIES })
+    const res = await axios({
+      method: "GET",
+      url: "/trending/movie/day",
+      params: {
+        page
+      }
+    })
+    dispatch({ type: TRENDING.FETCHED.MOVIES, payload: res.data })
   }
 }

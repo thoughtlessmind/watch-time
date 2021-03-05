@@ -1,15 +1,13 @@
-/* eslint-disable react/jsx-curly-brace-presence */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom"
 import PropTypes from "prop-types"
-import "./trending.css"
-import { fetchAllTrending } from "appRedux/thunks/trending/actions"
 import MediaFlashCard from "components/MediaFlashCard"
+import { fetchTrendingMovies } from "appRedux/thunks/trending/actions"
+import { Pagination } from "swiper"
 import PaginationButtons from "CustomComponents/Pagination"
 
-const Trending = (props) => {
+const TopMovies = (props) => {
   const {
     location: { search: page }
   } = props
@@ -18,35 +16,29 @@ const Trending = (props) => {
   const [currentPage, setCurrentPage] = useState("1")
 
   useEffect(() => {
-    dispatch(fetchAllTrending())
-  }, [])
-
-  useEffect(() => {
-    console.log(page)
     const currPage = page.split("=")?.[1] ?? "1"
     setCurrentPage(parseInt(currPage, 10))
-    dispatch(fetchAllTrending(parseInt(currPage, 10)))
+    dispatch(fetchTrendingMovies(parseInt(currPage, 10)))
   }, [page])
 
   return (
     <div>
-      <h2 className='text-2xl font-semibold mb-2'>Trending</h2>
+      <h2 className='text-2xl font-semibold mb-2'>Top Movies</h2>
       <div className='gridContainer grid gap-4 lg:gap-x-6 gap-y-8'>
         {trendingData.loading.all
           ? "loading"
-          : trendingData.all?.results[currentPage]?.map((item) => (
+          : trendingData.movies?.results[currentPage]?.map((item) => (
               <MediaFlashCard key={item.id} cardData={item} />
             ))}
       </div>
-
-      <PaginationButtons currentPage={currentPage} basePath='/trending' />
+      <PaginationButtons currentPage={currentPage} basePath='/top-movies' />
     </div>
   )
 }
 
-Trending.propTypes = {
+TopMovies.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   location: PropTypes.object.isRequired
 }
 
-export default withRouter(Trending)
+export default withRouter(TopMovies)

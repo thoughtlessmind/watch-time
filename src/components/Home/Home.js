@@ -9,7 +9,7 @@ import SwiperCore, {
   A11y,
   Controller
 } from "swiper"
-import { fetchTrending } from "appRedux/thunks/trending/actions"
+import { fetchAllTrending } from "appRedux/thunks/trending/actions"
 import MediaFlashCard from "components/MediaFlashCard"
 import { FaAngleRight } from "react-icons/fa"
 import { Link } from "react-router-dom"
@@ -21,7 +21,7 @@ const Home = () => {
   const trendingData = useSelector((state) => state.trending)
 
   useEffect(() => {
-    dispatch(fetchTrending())
+    dispatch(fetchAllTrending())
   }, [])
 
   return (
@@ -33,7 +33,7 @@ const Home = () => {
         </Link>
       </div>
       {/* <div className=''></div> */}
-      {trendingData.loading ? (
+      {trendingData.loading.all ? (
         <h1>Loaidng...</h1>
       ) : (
         <Swiper
@@ -59,7 +59,7 @@ const Home = () => {
           scrollbar={{ draggable: true }}
           // key={item.id}
         >
-          {trendingData.data?.results?.[1]?.map((item, index) => (
+          {trendingData.all?.results?.[1]?.map((item, index) => (
             <SwiperSlide key={item.id}>
               <MediaFlashCard cardData={item} />
             </SwiperSlide>

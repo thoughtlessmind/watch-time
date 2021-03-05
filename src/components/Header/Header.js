@@ -7,7 +7,7 @@ const Header = () => {
   const headerNavLinks = [
     {
       name: "Top Movies",
-      to: "/"
+      to: "/top-movies"
     },
     {
       name: "Top Shows",
