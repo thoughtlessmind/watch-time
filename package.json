@@ -7,7 +7,8 @@
     "start": "SET SERVE=true && webpack serve",
     "watch": "webpack --watch",
     "build": "SET NODE_ENV=production && webpack --config webpack.config.prod.js --progress",
-    "build-dev": "webpack"
+    "build-dev": "webpack",
+    "build:stats": "webpack --config webpack.config.prod.js --progress --profile --json=bundle-stats.json"
   },
   "keywords": [],
   "author": "",
