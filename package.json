@@ -6,7 +6,7 @@
   "scripts": {
     "start": "SET SERVE=true && webpack serve",
     "watch": "webpack --watch",
-    "build": "SET NODE_ENV=production && webpack --config webpack.config.js --progress",
+    "build": "SET NODE_ENV=production && webpack --config webpack.config.prod.js --progress",
     "build-dev": "webpack"
   },
   "keywords": [],
@@ -42,6 +42,7 @@
     "postcss-loader": "^5.0.0",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.2.1",
+    "purgecss-webpack-plugin": "^4.0.2",
     "react-refresh": "^0.9.0",
     "regenerator-runtime": "^0.13.7",
     "sass": "^1.32.6",
