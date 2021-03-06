@@ -13,6 +13,7 @@ import { fetchAllTrending } from "appRedux/thunks/trending/actions"
 import MediaFlashCard from "components/MediaFlashCard"
 import { FaAngleRight } from "react-icons/fa"
 import { Link } from "react-router-dom"
+import CardSliderWrapper from "CustomComponents/CardSlider"
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Controller])
 
@@ -36,35 +37,13 @@ const Home = () => {
       {trendingData.loading.all ? (
         <h1>Loaidng...</h1>
       ) : (
-        <Swiper
-          spaceBetween={15}
-          slidesPerView={5}
-          breakpoints={{
-            320: {
-              slidesPerView: 2
-            },
-            520: {
-              slidesPerView: 3
-            },
-            748: {
-              slidesPerView: 4
-            },
-            960: {
-              slidesPerView: 5
-            }
-          }}
-          navigation
-          controller
-          // pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
-          // key={item.id}
-        >
+        <CardSliderWrapper>
           {trendingData.all?.results?.[1]?.map((item, index) => (
             <SwiperSlide key={item.id}>
               <MediaFlashCard cardData={item} />
             </SwiperSlide>
           ))}
-        </Swiper>
+        </CardSliderWrapper>
       )}
     </div>
   )

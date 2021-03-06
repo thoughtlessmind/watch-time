@@ -31,7 +31,7 @@ const TopMovies = (props) => {
               <MediaFlashCard key={item.id} cardData={item} />
             ))}
       </div>
-      <PaginationButtons currentPage={currentPage} basePath='/top-movies' />
+      <PaginationButtons currentPage={currentPage} basePath='/movies' />
     </div>
   )
 }
