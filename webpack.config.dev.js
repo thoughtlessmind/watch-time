@@ -26,7 +26,7 @@ const envKeys = env
   : {}
 
 const plugins = [
-  new CleanWebpackPlugin(),
+  // new CleanWebpackPlugin(),
   new MiniCssExractPlugin(),
   new HtmlWebpackPlugin({
     template: "./src/index.html"
@@ -35,17 +35,18 @@ const plugins = [
     patterns: [{ from: "./src/_redirects", to: "" }]
   }),
   new Dotenv({ systemvars: true }),
-  new webpack.DefinePlugin(envKeys)
+  new webpack.DefinePlugin(envKeys),
+  new ReactRefreshWebpackPlugin()
   // new BundleAnalyzerPlugin()
 ]
 
-if (process.env.NODE_ENV === "production") {
-  mode = "production"
-  target = "browserslist"
-}
-if (process.env.SERVE) {
-  plugins.push(new ReactRefreshWebpackPlugin())
-}
+// if (process.env.NODE_ENV === "production") {
+//   mode = "production"
+//   target = "browserslist"
+// }
+// if (process.env.SERVE) {
+//   plugins.push(new ReactRefreshWebpackPlugin())
+// }
 
 module.exports = {
   mode: mode,
@@ -111,31 +112,31 @@ module.exports = {
     }
   },
 
-  optimization: {
-    runtimeChunk: "single",
-    splitChunks: {
-      chunks: "all",
-      maxInitialRequests: Infinity,
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: (module) =>
-            `vendor.${
-              module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
-            }`
-        }
-      }
-    },
-    minimizer: [
-      new TerserPlugin({
-        terserOptions: {
-          output: {
-            comments: false
-          }
-        }
-      })
-    ]
-  },
+  // optimization: {
+  //   runtimeChunk: "single",
+  //   splitChunks: {
+  //     chunks: "all",
+  //     maxInitialRequests: Infinity,
+  //     cacheGroups: {
+  //       vendor: {
+  //         test: /[\\/]node_modules[\\/]/,
+  //         name: (module) =>
+  //           `vendor.${
+  //             module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
+  //           }`
+  //       }
+  //     }
+  //   },
+  //   minimizer: [
+  //     new TerserPlugin({
+  //       terserOptions: {
+  //         output: {
+  //           comments: false
+  //         }
+  //       }
+  //     })
+  //   ]
+  // },
 
   stats: {
     // Examine all modules
