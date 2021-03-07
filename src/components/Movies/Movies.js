@@ -14,15 +14,18 @@ import { useEffect, useState } from "react"
 import { fetchTrendingMovies } from "appRedux/thunks/trending/actions"
 import CardSliderWrapper from "CustomComponents/CardSlider"
 import MediaFlashCard from "components/MediaFlashCard"
+import { fetchTopRatedMovies } from "appRedux/thunks/movies/actions"
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Controller])
 
 const Movies = () => {
   const dispatch = useDispatch()
   const trendingData = useSelector((state) => state.trending)
+  const moviesData = useSelector((state) => state.movies)
 
   useEffect(() => {
     dispatch(fetchTrendingMovies())
+    dispatch(fetchTopRatedMovies())
   }, [])
 
   return (
@@ -34,12 +37,22 @@ const Movies = () => {
         </Link>
       </div>
       <CardSliderWrapper>
-        {trendingData.movies?.results[1].map((item) => (
+        {trendingData.movies?.results[1]?.map((item) => (
           <SwiperSlide key={item.id}>
             <MediaFlashCard cardData={item} />
           </SwiperSlide>
         ))}
       </CardSliderWrapper>
+      <div className='text-2xl font-semibold mb-2'>
+        <h3>Top Rated</h3>
+        <CardSliderWrapper>
+          {trendingData.movies?.results[1]?.map((item) => (
+            <SwiperSlide key={item.id}>
+              <MediaFlashCard cardData={item} />
+            </SwiperSlide>
+          ))}
+        </CardSliderWrapper>
+      </div>
     </div>
   )
 }
