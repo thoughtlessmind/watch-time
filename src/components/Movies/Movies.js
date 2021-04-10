@@ -7,7 +7,7 @@ import SwiperCore, {
   A11y,
   Controller
 } from "swiper"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { FaAngleRight } from "react-icons/fa"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
@@ -21,6 +21,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Controller])
 
 const Movies = () => {
   const dispatch = useDispatch()
+  const location = useLocation()
   const trendingData = useSelector((state) => state.trending)
   const moviesData = useSelector((state) => state.movies)
 
@@ -31,8 +32,15 @@ const Movies = () => {
 
   return (
     <div>
-      <SectionTitle subText='Explore trending movies of the week'>
-        Trending
+      <h2 className='text-3xl text-secondary-main font-bold mb-4'>
+        Explore Movies
+      </h2>
+      <SectionTitle
+        to={`${location.pathname}/trending`}
+        arrow
+        subText='Explore trending movies of the week'
+      >
+        Trending Movies
       </SectionTitle>
       <CardSliderWrapper>
         {trendingData.movies?.results[1]?.map((item) => (
@@ -41,9 +49,9 @@ const Movies = () => {
           </SwiperSlide>
         ))}
       </CardSliderWrapper>
-      <div className='text-2xl font-semibold mb-2 mt-6'>
+      <div className='text-2xl font-semibold mt-6'>
         <SectionTitle subText='Explore top rated movies'>
-            Top Rated
+          Top Rated Movies
         </SectionTitle>
 
         <CardSliderWrapper>

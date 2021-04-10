@@ -14,7 +14,7 @@ const MediaFlashCard = (props) => {
       className='md:w-auto w-34 bg-gray-200 rounded shadow-xl cursor-pointer duration-300 hover:shadow-2xl transition-shadow'
     >
       <img
-        className='h-64 w-full object-cover rounded rounded-b-none'
+        className='h-56 w-full object-cover rounded rounded-b-none'
         src={`https://image.tmdb.org/t/p/w500/${cardData.poster_path}`}
         alt='Movie Poster'
       />

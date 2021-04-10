@@ -1,6 +1,6 @@
 import Home from "components/Home"
 import Movies from "components/Movies/Movies"
-import TopMovies from "components/TopMovies"
+import TopMovies from "components/TrendingMovies"
 import Trending from "components/Trending"
 // import { App } from "containers"
 import App from "containers/App/App"

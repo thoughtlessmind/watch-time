@@ -6,6 +6,7 @@ import MediaFlashCard from "components/MediaFlashCard"
 import { fetchTrendingMovies } from "appRedux/thunks/trending/actions"
 import { Pagination } from "swiper"
 import PaginationButtons from "CustomComponents/Pagination"
+import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
 
 const TopMovies = (props) => {
   const {
@@ -23,15 +24,18 @@ const TopMovies = (props) => {
 
   return (
     <div>
-      <h2 className='text-2xl font-semibold mb-2'>Top Movies</h2>
-      <div className='gridContainer grid gap-4 lg:gap-x-6 gap-y-8'>
+      <SectionTitle>Trending Movies</SectionTitle>
+      <div className='gridContainer grid gap-4 lg:gap-x-6 gap-y-8 mt-4'>
         {trendingData.loading.all
           ? "loading"
           : trendingData.movies?.results[currentPage]?.map((item) => (
               <MediaFlashCard key={item.id} cardData={item} />
             ))}
       </div>
-      <PaginationButtons currentPage={currentPage} basePath='/movies' />
+      <PaginationButtons
+        currentPage={currentPage}
+        basePath='/movies/trending'
+      />
     </div>
   )
 }
