@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env SERVE=true webpack serve --config webpack.config.dev.js --progress",
+    "start": "cross-env SERVE=true webpack serve --config webpack.config.dev.js --progress --color",
     "watch": "webpack --watch",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js --progress",
     "build-dev": "webpack",

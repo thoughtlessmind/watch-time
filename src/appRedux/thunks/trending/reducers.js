@@ -65,6 +65,11 @@ const trendingReducer = produce((draft, action) => {
       draft.movies.results[action.payload.page] = action.payload.results
       break
 
+    case TRENDING.ERROR.ALL:
+      draft.loading.all = false
+      draft.error.all = action.payload
+      break
+
     default:
       return draft
   }

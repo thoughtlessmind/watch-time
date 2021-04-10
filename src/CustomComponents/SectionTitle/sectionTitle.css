@@ -1,0 +1,19 @@
+.mainTitle{
+  position: relative;
+  padding-left: 10px;
+}
+
+.mainTitle::before { 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background-color: var(--color-secondary-main);
+  content: '';
+  border-radius: 12px;
+}
+
+.mainTitle:hover >svg{
+  fill: var(--color-secondary-main);
+}

@@ -8,6 +8,7 @@ import "./trending.css"
 import { fetchAllTrending } from "appRedux/thunks/trending/actions"
 import MediaFlashCard from "components/MediaFlashCard"
 import PaginationButtons from "CustomComponents/Pagination"
+import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
 
 const Trending = (props) => {
   const {
@@ -30,7 +31,8 @@ const Trending = (props) => {
 
   return (
     <div>
-      <h2 className='text-2xl font-semibold mb-2'>Trending</h2>
+      {/* <h2 className='text-2xl font-semibold mb-2'>Trending</h2> */}
+      <SectionTitle>Trending</SectionTitle>
       <div className='gridContainer grid gap-4 lg:gap-x-6 gap-y-8'>
         {trendingData.loading.all
           ? "loading"

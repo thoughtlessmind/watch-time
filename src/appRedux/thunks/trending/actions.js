@@ -14,15 +14,20 @@ import { TRENDING } from "./reducers"
 
 export const fetchAllTrending = (page = 1) => {
   return async (dispatch) => {
-    dispatch({ type: TRENDING.FETCHING.ALL })
-    const res = await axios({
-      method: "GET",
-      url: "/trending/all/day",
-      params: {
-        page
-      }
-    })
-    dispatch({ type: TRENDING.FETCHED.ALL, payload: res.data })
+    try {
+      dispatch({ type: TRENDING.FETCHING.ALL })
+      const res = await axios({
+        method: "GET",
+        url: "/trending/all/day",
+        params: {
+          page
+        }
+      })
+      dispatch({ type: TRENDING.FETCHED.ALL, payload: res.data })
+    } catch (err) {
+      console.log(err?.message ?? err)
+      dispatch({ type: TRENDING.ERROR.ALL, payload: err.message })
+    }
   }
 }
 

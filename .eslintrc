@@ -89,6 +89,7 @@
     ],
     "consistent-return": "off",
     "arrow-body-style": "off",
+    "no-nested-ternary": "off",
     "no-param-reassign": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
