@@ -32,8 +32,8 @@ const Trending = (props) => {
   return (
     <div>
       {/* <h2 className='text-2xl font-semibold mb-2'>Trending</h2> */}
-      <SectionTitle>Trending</SectionTitle>
-      <div className='gridContainer grid gap-4 lg:gap-x-6 gap-y-8'>
+      <SectionTitle className='mb-4'>Trending</SectionTitle>
+      <div className='gridContainer xs:grid gap-4 lg:gap-x-6 gap-y-8'>
         {trendingData.loading.all
           ? "loading"
           : trendingData.all?.results[currentPage]?.map((item) => (

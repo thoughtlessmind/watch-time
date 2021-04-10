@@ -15,6 +15,7 @@ import { fetchTrendingMovies } from "appRedux/thunks/trending/actions"
 import CardSliderWrapper from "CustomComponents/CardSlider"
 import MediaFlashCard from "components/MediaFlashCard"
 import { fetchTopRatedMovies } from "appRedux/thunks/movies/actions"
+import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Controller])
 
@@ -30,12 +31,9 @@ const Movies = () => {
 
   return (
     <div>
-      <div className='mb-2 flex justify-between'>
-        <h3 className='text-2xl font-semibold mb-2'>Trending</h3>
-        <Link to='/movies/trending' className='flex items-center'>
-          Vew All <FaAngleRight />{" "}
-        </Link>
-      </div>
+      <SectionTitle subText='Explore trending movies of the week'>
+        Trending
+      </SectionTitle>
       <CardSliderWrapper>
         {trendingData.movies?.results[1]?.map((item) => (
           <SwiperSlide key={item.id}>
@@ -43,8 +41,11 @@ const Movies = () => {
           </SwiperSlide>
         ))}
       </CardSliderWrapper>
-      <div className='text-2xl font-semibold mb-2'>
-        <h3>Top Rated</h3>
+      <div className='text-2xl font-semibold mb-2 mt-6'>
+        <SectionTitle subText='Explore top rated movies'>
+            Top Rated
+        </SectionTitle>
+
         <CardSliderWrapper>
           {trendingData.movies?.results[1]?.map((item) => (
             <SwiperSlide key={item.id}>

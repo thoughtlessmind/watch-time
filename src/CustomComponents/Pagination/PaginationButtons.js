@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 const PaginationButtons = (props) => {
   const { currentPage, basePath } = props
   return (
-    <div className='flex justify-center items-center gap-2 my-8'>
+    <div className='flex justify-center items-center gap-2 py-8'>
       <Link
         type='button'
         className='border-2 w-12 rounded flex justify-center'

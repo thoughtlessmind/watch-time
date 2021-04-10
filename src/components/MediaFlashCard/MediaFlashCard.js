@@ -9,21 +9,28 @@ const MediaFlashCard = (props) => {
     return `${arr[1]} ${arr[3]}`
   }
   return (
-    <div className='md:w-52 w-44 p-2 bg-gray-400 rounded shadow-xl cursor-pointer hover:shadow-2xl transition-shadow'>
+    <div
+      style={{ maxWidth: "180px" }}
+      className='md:w-auto w-34 bg-gray-200 rounded shadow-xl cursor-pointer duration-300 hover:shadow-2xl transition-shadow'
+    >
       <img
-        className='h-64 w-48 object-cover rounded'
+        className='h-64 w-full object-cover rounded rounded-b-none'
         src={`https://image.tmdb.org/t/p/w500/${cardData.poster_path}`}
         alt='Movie Poster'
       />
-      <p className='flex items-center gap-0.5 mt-2'>
-        <FaStar className='text-yellow-400 mr-2' /> {cardData.vote_average}
-        <span className='ml-auto'>
-          {getMonthYearString(cardData.release_date || cardData.first_air_date)}
-        </span>
-      </p>
-      <p className='text-lg font-semibold'>
-        {cardData.original_title || cardData.original_name}
-      </p>
+      <div className='p-2'>
+        <p className='flex items-center gap-0.5 text-sm font-medium'>
+          <FaStar className='text-yellow-400 mr-1' /> {cardData.vote_average}
+          <span className='ml-auto'>
+            {getMonthYearString(
+              cardData.release_date || cardData.first_air_date
+            )}
+          </span>
+        </p>
+        <p className='text-base font-medium '>
+          {cardData.original_title || cardData.original_name}
+        </p>
+      </div>
     </div>
   )
 }
