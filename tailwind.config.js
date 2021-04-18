@@ -1,10 +1,10 @@
 module.exports = {
   purge: {
     enabled: true,
-    content: ["./src/**/*.js"],
-    options: {
-      keyframes: true
-    }
+    content: ["./src/**/*.js"]
+    // options: {
+    //   keyframes: true
+    // }
   },
   darkMode: "media", // or 'media' or 'class'
   theme: {
