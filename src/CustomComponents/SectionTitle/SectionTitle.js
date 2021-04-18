@@ -20,13 +20,15 @@ const SectionTitle = (props) => {
       className={`inline-block text-2xl cursor-pointer mb-2  ${className}`}
       {...restProps}
     >
-      <span className='flex items-center gap-2 mainTitle'>
-        <span className=' font-semibold'>{children}</span>
+      <span className='flex items-center gap-2 mainTitle text-white'>
+        <span className=' font-semibold '>{children}</span>
         {arrow && (
           <FaChevronRight className='text-xl opacity-95 duration-150' />
         )}
       </span>
-      {subText && <span className='text-sm font-medium'>{subText}</span>}
+      {subText && (
+        <span className='text-sm text-white font-medium'>{subText}</span>
+      )}
     </LinkDecider>
   )
 }

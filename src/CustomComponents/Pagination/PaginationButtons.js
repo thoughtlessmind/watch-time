@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom"
 import PropTypes from "prop-types"
+import clsx from "clsx"
 
 const PaginationButtons = (props) => {
   const { currentPage, basePath } = props
   return (
-    <div className='flex justify-center items-center gap-2 my-8'>
+    <div className='flex justify-center items-center gap-2 py-8 '>
       <Link
         type='button'
-        className='border-2 w-12 rounded flex justify-center'
+        className='border w-12 rounded flex justify-center text-gray-100 text-sm'
         to={`${basePath}?page=${currentPage === 1 ? 1 : currentPage - 1}`}
       >
         Prev
@@ -20,8 +21,13 @@ const PaginationButtons = (props) => {
         <Link
           key={item}
           type='button'
-          data-active={currentPage === item ? "true" : "false "}
-          className='border-2 w-12 rounded flex justify-center'
+          // data-active={currentPage === item ? "true" : "false "}
+          className={clsx(
+            "border w-12 rounded flex justify-center text-gray-100",
+            {
+              "bg-gray-300 text-gray-900 font-medium": currentPage === item
+            }
+          )}
           to={`${basePath}?page=${item}`}
         >
           {item}
@@ -29,7 +35,7 @@ const PaginationButtons = (props) => {
       ))}
       <Link
         type='button'
-        className='border-2 w-12 rounded flex justify-center'
+        className='border w-12 rounded flex justify-center text-gray-100 text-sm'
         to={`${basePath}?page=${currentPage + 1}`}
       >
         Next

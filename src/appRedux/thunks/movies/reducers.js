@@ -33,6 +33,7 @@ const moviesReducer = produce((draft, action) => {
 
     case MOVIES.FETCHED.TOP_RATED:
       draft.loading.topRated = false
+      draft.loading.all = false
       draft.topRated.page = action.payload.page
       draft.topRated.results[action.payload.page] = action.payload.results
       break

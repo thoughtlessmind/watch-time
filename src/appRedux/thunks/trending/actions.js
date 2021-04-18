@@ -40,7 +40,7 @@ export const fetchTrendingMovies = (page = 1) => {
     dispatch({ type: TRENDING.FETCHING.MOVIES })
     const res = await axios({
       method: "GET",
-      url: "/trending/movie/day",
+      url: "/trending/movie/week",
       params: {
         page
       }

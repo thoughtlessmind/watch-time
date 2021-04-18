@@ -11,18 +11,36 @@
 
 @media (min-width: 768px){
   .gridContainer {
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
 }
 }
 @media (max-width: 375px){
   .gridContainer {
     /* grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); */
     display:flex;
-    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .gridContainer > div {
+    /* width: 70%; */
+    width: 43%;
+  }
+  .gridContainer > div > img{
+    width: 100%
+  }
+}
+
+@media (max-width: 275px){
+  .gridContainer {
+    /* grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); */
+    display:flex;
+    justify-content: center;
     flex-direction: column;
   }
   .gridContainer > div {
-    width: 70%;
+    /* width: 70%; */
+    width: 100%;
   }
   .gridContainer > div > img{
     width: 100%

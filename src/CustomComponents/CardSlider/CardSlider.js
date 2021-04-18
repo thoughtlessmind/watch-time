@@ -28,7 +28,7 @@ const CardSliderWrapper = (props) => {
           slidesPerView: 4
         },
         960: {
-          slidesPerView: 5
+          slidesPerView: 6
         }
       }}
       navigation
