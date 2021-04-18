@@ -2,7 +2,7 @@ import { FaStar } from "react-icons/fa"
 import PropTypes from "prop-types"
 
 const MediaFlashCard = (props) => {
-  const { cardData } = props
+  const { cardData, onClick } = props
   const getMonthYearString = (dateString) => {
     const d = new Date(dateString)
     const arr = d.toDateString().split(" ")
@@ -10,6 +10,10 @@ const MediaFlashCard = (props) => {
   }
   return (
     <div
+      onClick={onClick}
+      tabIndex={0}
+      role='button'
+      onKeyPress={onClick}
       style={{ maxWidth: "180px" }}
       className='md:w-auto w-34 bg-gray-200 rounded shadow-xl cursor-pointer duration-300 hover:shadow-2xl transition-shadow'
     >
@@ -43,7 +47,12 @@ MediaFlashCard.propTypes = {
     vote_average: PropTypes.number,
     release_date: PropTypes.string,
     first_air_date: PropTypes.string
-  }).isRequired
+  }).isRequired,
+  onClick: PropTypes.func
+}
+
+MediaFlashCard.defaultProps = {
+  onClick: null
 }
 
 export default MediaFlashCard

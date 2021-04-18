@@ -45,7 +45,7 @@ const Movies = () => {
       <CardSliderWrapper>
         {trendingData.movies?.results[1]?.map((item) => (
           <SwiperSlide key={item.id}>
-            <MediaFlashCard cardData={item} />
+            <MediaFlashCard onClick={() => console.log(item)} cardData={item} />
           </SwiperSlide>
         ))}
       </CardSliderWrapper>
