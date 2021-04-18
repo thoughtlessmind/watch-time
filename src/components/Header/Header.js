@@ -3,26 +3,26 @@ import React, { useState } from "react"
 import { FaBars } from "react-icons/fa"
 import { Link } from "react-router-dom"
 
-const Header = () => {
-  const headerNavLinks = [
-    {
-      name: "Top Movies",
-      to: "/movies"
-    },
-    {
-      name: "Top Shows",
-      to: "/"
-    },
-    {
-      name: "Upcomings",
-      to: "/"
-    },
-    {
-      name: "Discover",
-      to: "/"
-    }
-  ]
+const headerNavLinks = [
+  {
+    name: "Top Movies",
+    to: "/movies"
+  },
+  {
+    name: "Top Shows",
+    to: "/"
+  },
+  {
+    name: "Upcomings",
+    to: "/"
+  },
+  {
+    name: "Discover",
+    to: "/"
+  }
+]
 
+const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   const handleNavSideBar = (e) => {
