@@ -32,12 +32,12 @@ const envKeys = env
 const plugins = [
   new CleanWebpackPlugin(),
   new MiniCssExractPlugin(),
-  new PurgecssPlugin({
-    paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
-    safelist: {
-      deep: [/swiper/]
-    }
-  }),
+  // new PurgecssPlugin({
+  //   paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
+  //   safelist: {
+  //     deep: [/swiper/]
+  //   }
+  // }),
   new HtmlWebpackPlugin({
     template: "./src/index.html"
   }),
