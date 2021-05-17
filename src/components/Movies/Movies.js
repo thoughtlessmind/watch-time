@@ -16,6 +16,8 @@ import CardSliderWrapper from "CustomComponents/CardSlider"
 import MediaFlashCard from "components/MediaFlashCard"
 import { fetchTopRatedMovies } from "appRedux/thunks/movies/actions"
 import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
+import MovieInfoDialog from "components/MovieInfoDialog"
+import { opneMoviesDialog } from "appRedux/thunks/general/actions"
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Controller])
 
@@ -45,7 +47,10 @@ const Movies = () => {
       <CardSliderWrapper>
         {trendingData.movies?.results[1]?.map((item) => (
           <SwiperSlide key={item.id}>
-            <MediaFlashCard onClick={() => console.log(item)} cardData={item} />
+            <MediaFlashCard
+              onClick={() => dispatch(opneMoviesDialog(item.id))}
+              cardData={item}
+            />
           </SwiperSlide>
         ))}
       </CardSliderWrapper>
@@ -57,11 +62,15 @@ const Movies = () => {
         <CardSliderWrapper>
           {trendingData.movies?.results[1]?.map((item) => (
             <SwiperSlide key={item.id}>
-              <MediaFlashCard cardData={item} />
+              <MediaFlashCard
+                onClick={() => dispatch(opneMoviesDialog(item.id))}
+                cardData={item}
+              />
             </SwiperSlide>
           ))}
         </CardSliderWrapper>
       </div>
+      {/* <MovieInfoDialog /> */}
     </div>
   )
 }

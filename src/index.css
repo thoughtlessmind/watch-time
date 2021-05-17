@@ -11,9 +11,23 @@
 
 body{
   min-height: 100vh;
-  min-width: 100vw;
+  /* min-width: 100vw; */
+  overflow-x: auto;
 }
 
 #root{
   min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgb(138 138 138);
+  box-shadow: 0 0 1px rgba(255,255,255,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }

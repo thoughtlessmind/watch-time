@@ -1,7 +1,7 @@
+import { opneMoviesDialog } from "appRedux/thunks/general/actions"
 import fetchAllGenresList from "appRedux/thunks/genres/actions"
 import { fetchTopRatedMovies } from "appRedux/thunks/movies/actions"
 import MediaFlashCard from "components/MediaFlashCard"
-import MovieInfoDialog from "components/MovieInfoDialog"
 import PaginationButtons from "CustomComponents/Pagination"
 import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
 import PropTypes from "prop-types"
@@ -25,9 +25,9 @@ const TopMovies = (props) => {
     dispatch(fetchTopRatedMovies(parseInt(currPage, 10)))
   }, [page])
 
-  useEffect(()  =>  {
+  useEffect(() => {
     dispatch(fetchAllGenresList())
-  },  [])
+  }, [])
 
   const handleDialog = () => {
     setDialogStatus((prev) => !prev)
@@ -35,7 +35,7 @@ const TopMovies = (props) => {
 
   return (
     <div>
-      <MovieInfoDialog onClose={handleDialog} open={dialogStatus} />
+      {/* <MovieInfoDialog onClose={handleDialog} open={dialogStatus} /> */}
       <div>
         <button
           type='button'
@@ -50,7 +50,11 @@ const TopMovies = (props) => {
         {topRatedMoviesData.loading.all
           ? "loading"
           : topRatedMoviesData.topRated?.results[currentPage]?.map((item) => (
-              <MediaFlashCard key={item.id} cardData={item} />
+              <MediaFlashCard
+                onClick={() => dispatch(opneMoviesDialog(item.id))}
+                key={item.id}
+                cardData={item}
+              />
             ))}
       </div>
       <PaginationButtons

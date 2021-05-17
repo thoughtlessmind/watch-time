@@ -6,6 +6,7 @@ import App from "containers/App/App"
 import { Switch, BrowserRouter, Route } from "react-router-dom"
 import TrendingMovies from "components/TrendingMovies"
 import TopMovies from "components/TopMovies/TopMovies"
+import MovieInfoDialog from "components/MovieInfoDialog"
 
 const Routes = () => {
   const a = "a"
@@ -25,6 +26,9 @@ const Routes = () => {
           <Route path='/movies/top-rated'>
             <TopMovies />
           </Route>
+          {/* <Route path='/movies/:movieId'>
+            <MovieInfoDialog />
+          </Route> */}
           <Route path='/movies'>
             <Movies />
           </Route>
