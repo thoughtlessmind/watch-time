@@ -93,11 +93,14 @@ const MovieInfoDialog = (props) => {
         }
       />
       <DialogWrapper>
-        <div className='grid grid-cols-5 gap-2 text-white'>
-          <div className='pt-4 pl-4 col-span-3'>
-            <h4 className='text-3xl  font-medium'>
+        <div className='grid pt-4 md:pt-8 lg:pt-12 grid-cols-5 gap-2 text-white'>
+          <div className=' pl-4 col-span-3'>
+            <h4 className='text-3xl font-medium'>
               {currentMovieData?.original_title ?? "Loading"}
             </h4>
+            <p className='font-medium  mb-2 mt-1'>
+              {currentMovieData?.tagline}
+            </p>
             <div className='flex items-center gap-2 mb-4'>
               <p>{currentMovieData?.release_date}</p>
               &#8226;
@@ -105,8 +108,11 @@ const MovieInfoDialog = (props) => {
               <RingRating rating={currentMovieData?.vote_average} />
               &#8226;
               <p>{currentMovieData?.runtime} min</p>
+              &#8226;
+              <p className='uppercase'>{currentMovieData?.original_language}</p>
             </div>
             <div>
+              <p className='text-sm pb-2 text-gray-300'>Overview</p>
               <p>{currentMovieData?.overview}</p>
             </div>
           </div>
@@ -116,6 +122,49 @@ const MovieInfoDialog = (props) => {
               alt='poster'
               src={`https://image.tmdb.org/t/p/w500/${currentMovieData?.poster_path}`}
             />
+          </div>
+        </div>
+        <div>
+          <p className='text-white font-medium text-lg mb-4'>
+            Top Billed Casts
+          </p>
+          <div>
+            <ul className='mx-auto  grid grid-cols-2 gap-4 sm:grid-cols-4 md:gap-x-6 lg:max-w-5xl lg:gap-x-8 lg:gap-y-12 xl:grid-cols-6'>
+              {currentMovieData?.credits?.cast?.slice(0, 8)?.map((cast) => (
+                <li
+            
+            
+            
+            
+                                      key={cast.name}
+       
+       
+       
+       
+                                                          className='rounded overflow-hidden bg-opacity-20 bg-white'
+                
+                
+                
+                
+                >
+                  <div className='space-y-4'>
+                    <img
+                      className='w-full h-auto'
+                      src={`https://image.tmdb.org/t/p/w200/${cast.profile_path}`}
+                      alt=''
+                    />
+                    <div className='space-y-2 mx-auto h-20 w-20 lg:w-24 lg:h-24'>
+                      <div className='font-medium lg:text-sm'>
+                        <h3 className='tex-sm text-gray-200'>{cast.name}</h3>
+                        <p className='text-gray-300 text-xs'>
+                          {cast.character}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </DialogWrapper>

@@ -5,25 +5,24 @@ import clsx from "clsx"
 const Dialog = (props) => {
   const { open, onClose, children, className } = props
 
-  const test = () => {
-    document.body.style.overflowY = "hidden"
-    document.addEventListener("keyup", ex)
-    // document.body.style.top = `-${window.scrollY}px`
+  const dialogCloseHandler = (e) => {
+    if (e.keyCode === 27) onClose()
+    document.removeEventListener("keyup", dialogCloseHandler)
   }
 
-  const ex = (e) => {
-    console.log(e)
-    if (e.keyCode === 27) onClose()
-    document.removeEventListener("keyup", ex)
+  const attachCloseEventListener = () => {
+    document.body.style.overflowY = "hidden"
+    document.addEventListener("keyup", dialogCloseHandler)
+    // document.body.style.top = `-${window.scrollY}px`
   }
 
   const unset = () => {
     document.body.style.overflowY = "unset"
-    document.removeEventListener("keyup", ex)
+    document.removeEventListener("keyup", dialogCloseHandler)
   }
 
   useEffect(() => {
-    if (open) test()
+    if (open) attachCloseEventListener()
     else unset()
   }, [open])
 
@@ -36,15 +35,22 @@ const Dialog = (props) => {
     >
       <div
         onClick={onClose}
-        onKeyPress={ex}
+        onKeyPress={dialogCloseHandler}
         role='presentation'
         style={{ backgroundColor: "rgb(0 0 0 / 55%)", zIndex: "-1" }}
         className='absolute w-full h-full'
       />
       <div
         style={{ width: "70%", height: "80%", minHeight: "300px" }}
-        className={`z-10 bg-current rounded shadow-lg bg-gray-800 ${className}`}
+        className={`z-10 bg-current rounded shadow-lg bg-gray-800 relative ${className}`}
       >
+        <button
+          onClick={onClose}
+          type='button'
+          className='absolute  text-2xl right-5 transform  rotate-45	 top-5 rounded-full hover:bg-gray-500 text-gray-500 hover:text-gray-800 cursor-pointer z-40 flex items-center justify-center h-6 w-6'
+        >
+          +{/* <span className='text-2xl '>+</span> */}
+        </button>
         {children}
       </div>
     </div>
