@@ -15,6 +15,7 @@ import { FaAngleRight } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import CardSliderWrapper from "CustomComponents/CardSlider"
 import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
+import { openCinemaDialog } from "appRedux/thunks/general/actions"
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Controller])
 
@@ -25,6 +26,11 @@ const Home = () => {
   useEffect(() => {
     dispatch(fetchAllTrending())
   }, [])
+
+  const handleOpenCinemaDialog = (mediaId, mediaType) => {
+    console.log({ mediaId, mediaType })
+    dispatch(openCinemaDialog(mediaId, mediaType))
+  }
 
   return (
     <div>
@@ -47,7 +53,10 @@ const Home = () => {
         <CardSliderWrapper>
           {trendingData.all?.results?.[1]?.map((item, index) => (
             <SwiperSlide key={item.id}>
-              <MediaFlashCard cardData={item} />
+              <MediaFlashCard
+                onClick={() => handleOpenCinemaDialog(item.id, item.media_type)}
+                cardData={item}
+              />
             </SwiperSlide>
           ))}
         </CardSliderWrapper>

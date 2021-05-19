@@ -1,4 +1,4 @@
-import { opneMoviesDialog } from "appRedux/thunks/general/actions"
+import { openCinemaDialog } from "appRedux/thunks/general/actions"
 import fetchAllGenresList from "appRedux/thunks/genres/actions"
 import { fetchTopRatedMovies } from "appRedux/thunks/movies/actions"
 import MediaFlashCard from "components/MediaFlashCard"
@@ -51,7 +51,7 @@ const TopMovies = (props) => {
           ? "loading"
           : topRatedMoviesData.topRated?.results[currentPage]?.map((item) => (
               <MediaFlashCard
-                onClick={() => dispatch(opneMoviesDialog(item.id))}
+                onClick={() => dispatch(openCinemaDialog(item.id, "movie"))}
                 key={item.id}
                 cardData={item}
               />

@@ -7,7 +7,7 @@ import { fetchTrendingMovies } from "appRedux/thunks/trending/actions"
 import { Pagination } from "swiper"
 import PaginationButtons from "CustomComponents/Pagination"
 import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
-import { opneMoviesDialog } from "appRedux/thunks/general/actions"
+import { openCinemaDialog } from "appRedux/thunks/general/actions"
 
 const TrendingMovies = (props) => {
   const {
@@ -31,7 +31,7 @@ const TrendingMovies = (props) => {
           ? "loading"
           : trendingData.movies?.results[currentPage]?.map((item) => (
               <MediaFlashCard
-                onClick={() => dispatch(opneMoviesDialog(item.id))}
+                onClick={() => dispatch(openCinemaDialog(item.id, "movie"))}
                 key={item.id}
                 cardData={item}
               />

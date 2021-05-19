@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from "react-redux"
 import styled, { css } from "styled-components"
 import Dialog from "CustomComponents/Dialog"
 import { fetchSingleMovieData } from "appRedux/thunks/movies/actions"
-import { closeMovieDialog } from "appRedux/thunks/general/actions"
+import { closCinemaDialog } from "appRedux/thunks/general/actions"
 import CircularRating from "CustomComponents/CircularRating/CircularRating"
 import RingRating from "CustomComponents/RingRating/RingRating"
 import PersonList from "CustomComponents/PseronsList/PersonList"
+import { fetchSingleTvShowData } from "appRedux/thunks/tv/actions"
 
 const DialogWrapper = styled.div`
   padding: 16px;
@@ -49,7 +50,7 @@ const BgWrapper = styled.div`
 `
 
 const MovieInfoDialog = (props) => {
-  const movieDialogData = useSelector((state) => state.general.moviesDialog)
+  const cinemaDialogData = useSelector((state) => state.general.cinemaDialog)
   const dispatch = useDispatch()
   const {
     loading: { single: loading },
@@ -57,34 +58,40 @@ const MovieInfoDialog = (props) => {
     single: allSingleMovies
   } = useSelector((state) => state.movies)
 
+  const {
+    loading: { single: tvLoading },
+    error: { single: tvLoadingError },
+    single: allSingleTvShows
+  } = useSelector((state) => state.tvShows)
+
   const [currentMovieData, setCurrentMovieData] = useState(undefined)
 
   useEffect(() => {
-    if (movieDialogData.open) {
-      dispatch(fetchSingleMovieData(movieDialogData?.movieId))
+    if (cinemaDialogData.open) {
+      return cinemaDialogData.cinemaType === "movie"
+        ? dispatch(fetchSingleMovieData(cinemaDialogData?.id))
+        : dispatch(fetchSingleTvShowData(cinemaDialogData?.id))
     }
-    console.log(movieDialogData)
-  }, [movieDialogData])
+    console.log(cinemaDialogData)
+  }, [cinemaDialogData])
 
   useEffect(() => {
     console.log({ loading, loadingError, allSingleMovies })
   })
 
   useEffect(() => {
-    if (
-      !loading &&
-      Object.keys(allSingleMovies).includes(`${movieDialogData?.movieId}`)
-    ) {
-      console.log(allSingleMovies)
-      setCurrentMovieData(allSingleMovies[movieDialogData?.movieId])
+    if (cinemaDialogData.cinemaType === "movie") {
+      setCurrentMovieData(allSingleMovies[cinemaDialogData?.id])
+    } else {
+      setCurrentMovieData(allSingleTvShows[cinemaDialogData?.id])
     }
-  }, [allSingleMovies])
+  }, [allSingleMovies, allSingleTvShows])
 
   return (
     <Dialog
       className='relative'
-      open={movieDialogData.open}
-      onClose={() => dispatch(closeMovieDialog())}
+      open={cinemaDialogData.open}
+      onClose={() => dispatch(closCinemaDialog())}
     >
       <BgWrapper
         posterBg={
@@ -97,7 +104,11 @@ const MovieInfoDialog = (props) => {
         <div className='grid pt-4 md:pt-8 lg:pt-12 grid-cols-5 gap-2 text-white'>
           <div className=' pl-4 col-span-3'>
             <h4 className='text-3xl font-medium'>
-              {currentMovieData?.original_title ?? "Loading"}
+              {currentMovieData.name
+                ? currentMovieData.name
+                : currentMovieData.original_title
+                ? currentMovieData.original_title
+                : "Loading"}
             </h4>
             <p className='font-medium  mb-2 mt-1'>
               {currentMovieData?.tagline}

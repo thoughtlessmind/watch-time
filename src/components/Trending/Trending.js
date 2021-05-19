@@ -9,6 +9,7 @@ import { fetchAllTrending } from "appRedux/thunks/trending/actions"
 import MediaFlashCard from "components/MediaFlashCard"
 import PaginationButtons from "CustomComponents/Pagination"
 import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
+import { openCinemaDialog } from "appRedux/thunks/general/actions"
 
 const Trending = (props) => {
   const {
@@ -37,7 +38,11 @@ const Trending = (props) => {
         {trendingData.loading.all
           ? "loading"
           : trendingData.all?.results[currentPage]?.map((item) => (
-              <MediaFlashCard key={item.id} cardData={item} />
+              <MediaFlashCard
+                key={item.id}
+                // onClick={() => handleOpenCinemaDialog(item.id, item.media_type)}
+                cardData={item}
+              />
             ))}
       </div>
 

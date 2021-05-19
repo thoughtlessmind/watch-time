@@ -1,27 +1,29 @@
 import produce from "immer"
 
 const initialState = {
-  moviesDialog: {
+  cinemaDialog: {
     open: false,
-    movieId: null
+    id: null
   }
 }
 
 export const GENERAL = {
-  OPEN_MOVIE_DIALOG: "OPEN_MOVIE_DIALOG",
-  CLOSE_MOVIE_DIALOG: "CLOSE_MOVIE_DIALOG"
+  OPEN_CINEMA_DIALOG: "OPEN_MOVIE_DIALOG",
+  CLOSE_CINEMA_DIALOG: "CLOSE_MOVIE_DIALOG"
 }
 
 const generalReducer = produce((draft, action) => {
   switch (action.type) {
-    case GENERAL.OPEN_MOVIE_DIALOG:
-      draft.moviesDialog.movieId = action.payload
-      draft.moviesDialog.open = true
+    case GENERAL.OPEN_CINEMA_DIALOG:
+      draft.cinemaDialog.id = action.payload.id
+      draft.cinemaDialog.cinemaType = action.payload.cinemaType
+      draft.cinemaDialog.open = true
       break
 
-    case GENERAL.CLOSE_MOVIE_DIALOG:
-      draft.moviesDialog.open = false
-      draft.moviesDialog.movieId = null
+    case GENERAL.CLOSE_CINEMA_DIALOG:
+      draft.cinemaDialog.open = false
+      draft.cinemaDialog.id = null
+      draft.cinemaDialog.cinemaType = null
       break
 
     default:
