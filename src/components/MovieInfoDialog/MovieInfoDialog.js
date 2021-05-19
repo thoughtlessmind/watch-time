@@ -7,6 +7,7 @@ import { fetchSingleMovieData } from "appRedux/thunks/movies/actions"
 import { closeMovieDialog } from "appRedux/thunks/general/actions"
 import CircularRating from "CustomComponents/CircularRating/CircularRating"
 import RingRating from "CustomComponents/RingRating/RingRating"
+import PersonList from "CustomComponents/PseronsList/PersonList"
 
 const DialogWrapper = styled.div`
   padding: 16px;
@@ -129,42 +130,7 @@ const MovieInfoDialog = (props) => {
             Top Billed Casts
           </p>
           <div>
-            <ul className='mx-auto  grid grid-cols-2 gap-4 sm:grid-cols-4 md:gap-x-6 lg:max-w-5xl lg:gap-x-8 lg:gap-y-12 xl:grid-cols-6'>
-              {currentMovieData?.credits?.cast?.slice(0, 8)?.map((cast) => (
-                <li
-            
-            
-            
-            
-                                      key={cast.name}
-       
-       
-       
-       
-                                                          className='rounded overflow-hidden bg-opacity-20 bg-white'
-                
-                
-                
-                
-                >
-                  <div className='space-y-4'>
-                    <img
-                      className='w-full h-auto'
-                      src={`https://image.tmdb.org/t/p/w200/${cast.profile_path}`}
-                      alt=''
-                    />
-                    <div className='space-y-2 mx-auto h-20 w-20 lg:w-24 lg:h-24'>
-                      <div className='font-medium lg:text-sm'>
-                        <h3 className='tex-sm text-gray-200'>{cast.name}</h3>
-                        <p className='text-gray-300 text-xs'>
-                          {cast.character}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <PersonList personsArr={currentMovieData?.credits?.cast ?? []} />
           </div>
         </div>
       </DialogWrapper>
