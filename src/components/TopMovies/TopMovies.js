@@ -50,11 +50,7 @@ const TopMovies = (props) => {
         {topRatedMoviesData.loading.all
           ? "loading"
           : topRatedMoviesData.topRated?.results[currentPage]?.map((item) => (
-              <MediaFlashCard
-                onClick={() => dispatch(openCinemaDialog(item.id, "movie"))}
-                key={item.id}
-                cardData={item}
-              />
+              <MediaFlashCard key={item.id} cardData={item} />
             ))}
       </div>
       <PaginationButtons

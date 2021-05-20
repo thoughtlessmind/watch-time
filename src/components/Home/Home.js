@@ -53,10 +53,7 @@ const Home = () => {
         <CardSliderWrapper>
           {trendingData.all?.results?.[1]?.map((item, index) => (
             <SwiperSlide key={item.id}>
-              <MediaFlashCard
-                onClick={() => handleOpenCinemaDialog(item.id, item.media_type)}
-                cardData={item}
-              />
+              <MediaFlashCard cardData={item} />
             </SwiperSlide>
           ))}
         </CardSliderWrapper>

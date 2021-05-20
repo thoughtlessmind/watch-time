@@ -47,10 +47,7 @@ const Movies = () => {
       <CardSliderWrapper>
         {trendingData.movies?.results[1]?.map((item) => (
           <SwiperSlide key={item.id}>
-            <MediaFlashCard
-              onClick={() => dispatch(openCinemaDialog(item.id, "movie"))}
-              cardData={item}
-            />
+            <MediaFlashCard cardData={item} />
           </SwiperSlide>
         ))}
       </CardSliderWrapper>
@@ -62,10 +59,7 @@ const Movies = () => {
         <CardSliderWrapper>
           {trendingData.movies?.results[1]?.map((item) => (
             <SwiperSlide key={item.id}>
-              <MediaFlashCard
-                onClick={() => dispatch(openCinemaDialog(item.id, "movie"))}
-                cardData={item}
-              />
+              <MediaFlashCard cardData={item} />
             </SwiperSlide>
           ))}
         </CardSliderWrapper>

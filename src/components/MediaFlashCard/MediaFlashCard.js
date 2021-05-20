@@ -2,6 +2,8 @@ import { FaInfoCircle, FaStar } from "react-icons/fa"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import { openCinemaDialog } from "appRedux/thunks/general/actions"
+import { useDispatch } from "react-redux"
 
 const FlashCardContainer = styled.div`
   position: relative;
@@ -29,6 +31,7 @@ const FlashCardContainer = styled.div`
 
 const MediaFlashCard = (props) => {
   const { cardData, onClick, ...restProps } = props
+  const dispatch = useDispatch()
   const getMonthYearString = (dateString) => {
     const d = new Date(dateString)
     const arr = d.toDateString().split(" ")
@@ -38,7 +41,7 @@ const MediaFlashCard = (props) => {
   const handleInfoBtnClick = (e) => {
     e.stopPropagation()
     e.preventDefault()
-    onClick()
+    dispatch(openCinemaDialog(cardData.id, cardData.media_type))
   }
   return (
     <Link to={`/${cardData.media_type}/${cardData.id}`}>

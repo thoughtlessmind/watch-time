@@ -38,11 +38,7 @@ const Trending = (props) => {
         {trendingData.loading.all
           ? "loading"
           : trendingData.all?.results[currentPage]?.map((item) => (
-              <MediaFlashCard
-                key={item.id}
-                // onClick={() => handleOpenCinemaDialog(item.id, item.media_type)}
-                cardData={item}
-              />
+              <MediaFlashCard key={item.id} cardData={item} />
             ))}
       </div>
 
