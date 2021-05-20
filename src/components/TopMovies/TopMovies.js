@@ -2,6 +2,7 @@ import { openCinemaDialog } from "appRedux/thunks/general/actions"
 import fetchAllGenresList from "appRedux/thunks/genres/actions"
 import { fetchTopRatedMovies } from "appRedux/thunks/movies/actions"
 import MediaFlashCard from "components/MediaFlashCard"
+import ContentLayoutWrapper from "containers/ContentLayoutWrapper"
 import PaginationButtons from "CustomComponents/Pagination"
 import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
 import PropTypes from "prop-types"
@@ -34,7 +35,7 @@ const TopMovies = (props) => {
   }
 
   return (
-    <div>
+    <ContentLayoutWrapper>
       {/* <MovieInfoDialog onClose={handleDialog} open={dialogStatus} /> */}
       <div>
         <button
@@ -57,7 +58,7 @@ const TopMovies = (props) => {
         currentPage={currentPage}
         basePath='/movies/trending'
       />
-    </div>
+    </ContentLayoutWrapper>
   )
 }
 
