@@ -100,51 +100,62 @@ const MovieInfoDialog = (props) => {
             : false
         }
       />
-      <DialogWrapper>
-        <div className='grid pt-4 md:pt-8 lg:pt-12 grid-cols-5 gap-2 text-white'>
-          <div className=' pl-4 col-span-3'>
-            <h4 className='text-3xl font-medium'>
-              {currentMovieData.name
-                ? currentMovieData.name
-                : currentMovieData.original_title
-                ? currentMovieData.original_title
-                : "Loading"}
-            </h4>
-            <p className='font-medium  mb-2 mt-1'>
-              {currentMovieData?.tagline}
-            </p>
-            <div className='flex items-center gap-2 mb-4'>
-              <p>{currentMovieData?.release_date}</p>
-              &#8226;
-              {/* <p>{currentMovieData?.vote_average}</p> */}
-              <RingRating rating={currentMovieData?.vote_average} />
-              &#8226;
-              <p>{currentMovieData?.runtime} min</p>
-              &#8226;
-              <p className='uppercase'>{currentMovieData?.original_language}</p>
+      {cinemaDialogData.open && (
+        <DialogWrapper>
+          <div className='grid pt-4 md:pt-8 lg:pt-12 grid-cols-5 gap-2 text-white'>
+            <div className=' pl-4 col-span-3'>
+              <h4 className='text-3xl font-medium'>
+                {currentMovieData && currentMovieData?.name
+                  ? currentMovieData?.name
+                  : currentMovieData?.original_title
+                  ? currentMovieData.original_title
+                  : "Loading"}
+                <span className='font-light text-gray-400 ml-4'>
+                  (&nbsp;
+                  {cinemaDialogData.cinemaType === "tv"
+                    ? new Date(currentMovieData?.first_air_date).getFullYear()
+                    : new Date(currentMovieData?.release_date).getFullYear()}
+                  &nbsp;)
+                </span>
+              </h4>
+              <p className='font-medium  mb-2 mt-1'>
+                {currentMovieData?.tagline}
+              </p>
+              <div className='flex items-center gap-2 mb-4'>
+                <p>{currentMovieData?.release_date}</p>
+                &#8226;
+                {/* <p>{currentMovieData?.vote_average}</p> */}
+                <RingRating rating={currentMovieData?.vote_average} />
+                &#8226;
+                <p>{currentMovieData?.runtime} min</p>
+                &#8226;
+                <p className='uppercase'>
+                  {currentMovieData?.original_language}
+                </p>
+              </div>
+              <div>
+                <p className='text-sm pb-2 text-gray-300'>Overview</p>
+                <p>{currentMovieData?.overview}</p>
+              </div>
             </div>
-            <div>
-              <p className='text-sm pb-2 text-gray-300'>Overview</p>
-              <p>{currentMovieData?.overview}</p>
+            <div className='col-span-2 h-80 flex items-center justify-center w-auto'>
+              <img
+                className='w-auto h-80 rounded shadow'
+                alt='poster'
+                src={`https://image.tmdb.org/t/p/w500/${currentMovieData?.poster_path}`}
+              />
             </div>
           </div>
-          <div className='col-span-2 h-80 flex items-center justify-center w-auto'>
-            <img
-              className='w-auto h-80 rounded shadow'
-              alt='poster'
-              src={`https://image.tmdb.org/t/p/w500/${currentMovieData?.poster_path}`}
-            />
-          </div>
-        </div>
-        <div>
-          <p className='text-white font-medium text-lg mb-4'>
-            Top Billed Casts
-          </p>
           <div>
-            <PersonList personsArr={currentMovieData?.credits?.cast ?? []} />
+            <p className='text-white font-medium text-lg mb-4'>
+              Top Billed Casts
+            </p>
+            <div>
+              <PersonList personsArr={currentMovieData?.credits?.cast ?? []} />
+            </div>
           </div>
-        </div>
-      </DialogWrapper>
+        </DialogWrapper>
+      )}
     </Dialog>
   )
 }
