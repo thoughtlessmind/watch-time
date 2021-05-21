@@ -5,14 +5,24 @@ import "./welcomSection.css"
 const WelcomeSection = () => {
   const searchInputRef = useRef(null)
   const [isInputFocused, setIsInputFocused] = useState(false)
-  useEffect(() => {
-    console.log((searchInputRef.current = document.activeElement))
-  })
+  const [searchInputValue, setSearchInputValue] = useState("")
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault()
+    alert(
+      "work in progress. Please revisit/check by 22 May. \n Thank for visiting"
+    )
+  }
+
+  const handleSearchInputChange = (e) => {
+    setSearchInputValue(e.target.value)
+  }
+
   return (
     <div className='h-80 bg-opacity-25 bg-gray-700 w-full md:px-12 sm:px-4 px-2 welcomeSectionContainer'>
       {/* <div className='h-full flex items-center '> */}
       <div className=' '>
-        <div className=''>
+        <div className='w-full md:w-4/6'>
           <div
             className={clsx("py-6 text-white upperContainer", {
               shrinkUpperContainer: isInputFocused
@@ -24,7 +34,7 @@ const WelcomeSection = () => {
             </h5>
           </div>
           <div className='py-6  searchFormContainer'>
-            <form className='w-full searchForm'>
+            <form onSubmit={handleSearchSubmit} className='w-full searchForm'>
               <lable>
                 <input
                   type='text'
@@ -36,11 +46,12 @@ const WelcomeSection = () => {
                   autofill='off'
                   autoComplete='off'
                   spellCheck='false'
+                  onChange={handleSearchInputChange}
                   onFocus={() => setIsInputFocused(true)}
                   onBlur={() => setIsInputFocused(false)}
                   id='searchBox'
                   placeholder='Search for a movie, tv show, person......'
-                  value=''
+                  value={searchInputValue}
                 />
               </lable>
               <input className='searchSubmitBtn' type='submit' value='Search' />
