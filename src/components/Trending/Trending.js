@@ -9,6 +9,8 @@ import { fetchAllTrending } from "appRedux/thunks/trending/actions"
 import MediaFlashCard from "components/MediaFlashCard"
 import PaginationButtons from "CustomComponents/Pagination"
 import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
+import { openCinemaDialog } from "appRedux/thunks/general/actions"
+import ContentLayoutWrapper from "containers/ContentLayoutWrapper"
 
 const Trending = (props) => {
   const {
@@ -30,7 +32,7 @@ const Trending = (props) => {
   }, [page])
 
   return (
-    <div>
+    <ContentLayoutWrapper>
       {/* <h2 className='text-2xl font-semibold mb-2'>Trending</h2> */}
       <SectionTitle className='mb-4'>Trending</SectionTitle>
       <div className='gridContainer xs:grid gap-4 lg:gap-x-6 gap-y-8'>
@@ -42,7 +44,7 @@ const Trending = (props) => {
       </div>
 
       <PaginationButtons currentPage={currentPage} basePath='/trending' />
-    </div>
+    </ContentLayoutWrapper>
   )
 }
 

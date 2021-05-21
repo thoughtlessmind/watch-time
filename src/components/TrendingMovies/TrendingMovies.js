@@ -7,6 +7,7 @@ import { fetchTrendingMovies } from "appRedux/thunks/trending/actions"
 import { Pagination } from "swiper"
 import PaginationButtons from "CustomComponents/Pagination"
 import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
+import { openCinemaDialog } from "appRedux/thunks/general/actions"
 
 const TrendingMovies = (props) => {
   const {
