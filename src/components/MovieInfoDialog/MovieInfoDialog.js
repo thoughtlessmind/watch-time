@@ -1,53 +1,13 @@
 import PropTypes from "prop-types"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import styled, { css } from "styled-components"
 import Dialog from "CustomComponents/Dialog"
 import { fetchSingleMovieData } from "appRedux/thunks/movies/actions"
 import { closCinemaDialog } from "appRedux/thunks/general/actions"
-import CircularRating from "CustomComponents/CircularRating/CircularRating"
 import RingRating from "CustomComponents/RingRating/RingRating"
 import PersonList from "CustomComponents/PseronsList/PersonList"
 import { fetchSingleTvShowData } from "appRedux/thunks/tv/actions"
-
-const DialogWrapper = styled.div`
-  padding: 16px;
-  overflow-y: auto;
-  position: relative;
-  height: 100%;
-  border-radius: 0.25rem;
-`
-
-const BgWrapper = styled.div`
-  background: ${(props) => `url(${props.posterBg})`};
-  box-sizing: border-box;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  color: black;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: " ";
-  z-index: -2;
-  border-radius: 0.25rem;
-  overflow: hidden;
-  &:after {
-    background: linear-gradient(
-      to bottom right,
-      rgb(8 11 18),
-      rgb(0 1 2 / 78%)
-    );
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    content: " ";
-  }
-`
+import "./moviInfoDialog.css"
 
 const MovieInfoDialog = (props) => {
   const cinemaDialogData = useSelector((state) => state.general.cinemaDialog)
@@ -93,7 +53,13 @@ const MovieInfoDialog = (props) => {
       open={cinemaDialogData.open}
       onClose={() => dispatch(closCinemaDialog())}
     >
-      <BgWrapper
+      <div
+        className='bgWrapper'
+        style={{
+          background: currentMovieData?.backdrop_path
+            ? `url(https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${currentMovieData?.backdrop_path})`
+            : "inherit"
+        }}
         posterBg={
           currentMovieData?.backdrop_path
             ? `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${currentMovieData?.backdrop_path}`
@@ -101,7 +67,7 @@ const MovieInfoDialog = (props) => {
         }
       />
       {cinemaDialogData.open && (
-        <DialogWrapper>
+        <div className='dialogWrapper'>
           <div className='grid pt-4 md:pt-8 lg:pt-12 grid-cols-5 gap-2 text-white'>
             <div className=' pl-4 col-span-3'>
               <h4 className='text-3xl font-medium'>
@@ -154,7 +120,7 @@ const MovieInfoDialog = (props) => {
               <PersonList personsArr={currentMovieData?.credits?.cast ?? []} />
             </div>
           </div>
-        </DialogWrapper>
+        </div>
       )}
     </Dialog>
   )
