@@ -1,33 +1,9 @@
 import { FaInfoCircle, FaStar } from "react-icons/fa"
 import PropTypes from "prop-types"
-import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { openCinemaDialog } from "appRedux/thunks/general/actions"
 import { useDispatch } from "react-redux"
-
-const FlashCardContainer = styled.div`
-  position: relative;
-  & .infoIcon {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    color: transparent;
-    transform: scale(0.3);
-    fontsize: 20px;
-    transition: transform 0.2s ease-in-out;
-    border-radius: 50%;
-    z-index: 10;
-  }
-  &:hover {
-    & .infoIcon {
-      color: #fff;
-      transform: scale(1.3);
-      box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-        0px 4px 5px 0px rgba(0, 0, 0, 0.14),
-        0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-    }
-  }
-`
+import "./mediaFlashCard.css"
 
 const MediaFlashCard = (props) => {
   const { cardData, onClick, ...restProps } = props
@@ -45,12 +21,12 @@ const MediaFlashCard = (props) => {
   }
   return (
     <Link to={`/${cardData.media_type}/${cardData.id}`}>
-      <FlashCardContainer
+      <div
         component='a'
         tabIndex={0}
         role='button'
         style={{ maxWidth: "180px" }}
-        className='md:w-auto w-34 bg-gray-200 relative rounded shadow-xl cursor-pointer duration-300 hover:shadow-2xl transition-shadow'
+        className='flashCardContainer md:w-auto w-34 bg-gray-200 relative rounded shadow-xl cursor-pointer duration-300 hover:shadow-2xl transition-shadow'
         {...restProps}
       >
         <FaInfoCircle
@@ -78,7 +54,7 @@ const MediaFlashCard = (props) => {
             {cardData.original_title || cardData.original_name}
           </p>
         </div>
-      </FlashCardContainer>
+      </div>
     </Link>
   )
 }
