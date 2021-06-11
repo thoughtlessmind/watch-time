@@ -56,7 +56,7 @@ const MovieInfoDialog = (props) => {
       <div
         className='bgWrapper'
         style={{
-          background: currentMovieData?.backdrop_path
+          backgroundImage: currentMovieData?.backdrop_path
             ? `url(https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${currentMovieData?.backdrop_path})`
             : "inherit"
         }}

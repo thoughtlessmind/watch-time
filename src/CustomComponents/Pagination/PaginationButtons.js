@@ -25,7 +25,7 @@ const PaginationButtons = (props) => {
           className={clsx(
             "border w-12 rounded flex justify-center text-gray-100",
             {
-              "bg-gray-300 text-gray-900 font-medium": currentPage === item
+              "bg-gray-300 primary-main font-medium": currentPage === item
             }
           )}
           to={`${basePath}?page=${item}`}

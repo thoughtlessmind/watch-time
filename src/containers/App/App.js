@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 const App = (props) => {
   const { children } = props
   return (
-    <div className=' bg-gray-900'>
+    <div className=' bg-primary-main'>
       <Header />
       <div className='mt-16'>{children}</div>
       <MovieInfoDialog />

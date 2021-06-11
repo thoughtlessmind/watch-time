@@ -1,48 +1,79 @@
-import "swiper/swiper-bundle.min.css"
-import { Swiper } from "swiper/react"
-import SwiperCore, {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  Controller
-} from "swiper"
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import clsx from "clsx"
 import PropTypes from "prop-types"
+import { useEffect, useRef, useState } from "react"
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa"
+import "./cardSlider.scss"
 
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Controller])
-
-const CardSliderWrapper = (props) => {
+const CardSlider = (props) => {
   const { children } = props
+  const sliderConainerRef = useRef(null)
+
+  const [showScrollBtns, setShowScrollBtns] = useState({
+    left: false,
+    right: false
+  })
+
+  useEffect(() => {
+    manageScroll()
+  }, [])
+
+  const manageScroll = () => {
+    const leftPos = sliderConainerRef.current.scrollLeft || 0
+    const elWidth =
+      sliderConainerRef.current.getBoundingClientRect()?.width || 0
+
+    setShowScrollBtns({
+      left: leftPos > 0,
+      right: leftPos <= elWidth * 2
+    })
+  }
+
+  const handleScrollBtnClick = (direction) => {
+    sliderConainerRef.current.scroll({
+      left:
+        direction === "left"
+          ? sliderConainerRef.current.scrollLeft - 280
+          : sliderConainerRef.current.scrollLeft + 280,
+      behavior: "smooth"
+    })
+  }
+
   return (
-    <Swiper
-      spaceBetween={15}
-      slidesPerView={5}
-      breakpoints={{
-        320: {
-          slidesPerView: 2
-        },
-        520: {
-          slidesPerView: 3
-        },
-        748: {
-          slidesPerView: 4
-        },
-        960: {
-          slidesPerView: 6
-        }
-      }}
-      navigation
-      controller
-      // pagination={{ clickable: true }}
-      scrollbar={{ draggable: true }}
-    >
-      {children}
-    </Swiper>
+    <div className='sliederContainer'>
+      <span
+        className={clsx("nav-icon left-icon", {
+          hide: !showScrollBtns.left
+        })}
+        onClick={() => handleScrollBtnClick("left")}
+        role='button'
+        tabIndex={0}
+      >
+        <FaChevronLeft />
+      </span>
+      <span
+        className={clsx("nav-icon right-icon", {
+          hide: !showScrollBtns.right
+        })}
+        onClick={() => handleScrollBtnClick("right")}
+        role='button'
+        tabIndex={0}
+      >
+        <FaChevronRight />
+      </span>
+      <div
+        onScroll={manageScroll}
+        className='sliderWrapper'
+        ref={sliderConainerRef}
+      >
+        {children}
+      </div>
+    </div>
   )
 }
 
-CardSliderWrapper.propTypes = {
+CardSlider.propTypes = {
   children: PropTypes.node.isRequired
 }
 
-export default CardSliderWrapper
+export default CardSlider

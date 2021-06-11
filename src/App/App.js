@@ -26,7 +26,7 @@ const App = () => {
   const store = configureStore()
   return (
     <Provider store={store}>
-      <div className='bg-gray-900 min-h-screen'>
+      <div className='bg-primary-main min-h-screen'>
         <Routes />
       </div>
     </Provider>

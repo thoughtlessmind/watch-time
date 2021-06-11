@@ -1,4 +1,5 @@
 :root {
+  --color-primary-main: #111827;
   --color-secondary-main: #f5c518;
   /* ... */
 }
@@ -23,6 +24,7 @@ body{
   -webkit-appearance: none;
   appearance: none;
   width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-thumb {

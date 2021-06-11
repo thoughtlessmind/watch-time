@@ -1,1 +1,1 @@
-export { default } from "./CardSlider"
+export { default } from "./CardSliderOld"

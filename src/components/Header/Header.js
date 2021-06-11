@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import React, { useState } from "react"
+import { useState } from "react"
 import { FaBars } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import HeaderSearchBar from "./HeaderSearchBar"
@@ -34,21 +34,16 @@ const Header = () => {
 
   return (
     <nav className='bg-gray-800 py-4 md:px-12 sm:px-4 px-2 shadow fixed w-screen top-0 left-0 z-50'>
-      {/* <div className='max-w-7xl mx-auto px-2 sm:px-6 lg:px-8'> */}
       <div className='grid grid-cols-12 gap-2 md:gap-4'>
         <Link
           to='/'
-          className='text-white text-xl md:text-2xl md:col-span-3 col-span-4 cursor-pointer'
+          className='text-secondary-main font-semibold text-xl md:text-2xl md:col-span-3 col-span-4 cursor-pointer'
         >
           Watch Time
         </Link>
-        <div className='col-span-6 lg:col-span-4 opacity-70 rounded px-2 '> 
+        <div className='col-span-6 lg:col-span-4 opacity-70 rounded px-2 '>
           <HeaderSearchBar />
         </div>
-        {/* <input
-          className='col-span-6 lg:col-span-4 opacity-70 rounded px-2 '
-          placeholder='Search Movies and Shows...'
-        /> */}
         <div className='col-span-2 lg:col-span-5 px-3 col-start-11 col-end-12 md:col-start-12 my-auto'>
           <FaBars
             onClick={handleNavSideBar}

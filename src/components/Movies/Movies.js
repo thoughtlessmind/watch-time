@@ -19,6 +19,7 @@ import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
 import MovieInfoDialog from "components/MovieInfoDialog"
 import { openCinemaDialog } from "appRedux/thunks/general/actions"
 import ContentLayoutWrapper from "containers/ContentLayoutWrapper"
+import CardSlider from "CustomComponents/CardSlider/CardSlider"
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Controller])
 
@@ -35,7 +36,7 @@ const Movies = () => {
 
   return (
     <ContentLayoutWrapper>
-      <h2 className='text-3xl text-secondary-main font-bold mb-4'>
+      <h2 className='text-xl text-secondary-main font-medium mb-4'>
         Explore Movies
       </h2>
       <SectionTitle
@@ -45,25 +46,21 @@ const Movies = () => {
       >
         Trending Movies
       </SectionTitle>
-      <CardSliderWrapper>
+      <CardSlider>
         {trendingData.movies?.results[1]?.map((item) => (
-          <SwiperSlide key={item.id}>
-            <MediaFlashCard cardData={item} />
-          </SwiperSlide>
+          <MediaFlashCard cardData={item} key={item.id} />
         ))}
-      </CardSliderWrapper>
+      </CardSlider>
       <div className='text-2xl font-semibold mt-6'>
         <SectionTitle subText='Explore top rated movies'>
           Top Rated Movies
         </SectionTitle>
 
-        <CardSliderWrapper>
+        <CardSlider>
           {trendingData.movies?.results[1]?.map((item) => (
-            <SwiperSlide key={item.id}>
-              <MediaFlashCard cardData={item} />
-            </SwiperSlide>
+            <MediaFlashCard key={item.id} cardData={item} />
           ))}
-        </CardSliderWrapper>
+        </CardSlider>
       </div>
       {/* <MovieInfoDialog /> */}
     </ContentLayoutWrapper>

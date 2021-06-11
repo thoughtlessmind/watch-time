@@ -13,9 +13,10 @@ import { fetchAllTrending } from "appRedux/thunks/trending/actions"
 import MediaFlashCard from "components/MediaFlashCard"
 import { FaAngleRight } from "react-icons/fa"
 import { Link } from "react-router-dom"
-import CardSliderWrapper from "CustomComponents/CardSlider"
+// import CardSliderWrapper from "CustomComponents/CardSlider"
 import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
 import ContentLayoutWrapper from "containers/ContentLayoutWrapper"
+import CardSlider from "CustomComponents/CardSlider/CardSlider"
 import WelcomeSection from "./WelcomSection"
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Controller])
@@ -42,19 +43,16 @@ const Home = () => {
             Trending
           </SectionTitle>
         </div>
-        {/* <div className=''></div> */}
         {trendingData.loading.all ? (
           <h1>Loaidng...</h1>
         ) : trendingData.error.all ? (
           <pre>{trendingData.error.all}</pre>
         ) : (
-          <CardSliderWrapper>
-            {trendingData.all?.results?.[1]?.map((item, index) => (
-              <SwiperSlide key={item.id}>
-                <MediaFlashCard cardData={item} />
-              </SwiperSlide>
+          <CardSlider>
+            {trendingData.all?.results?.[1]?.map((item) => (
+              <MediaFlashCard cardData={item} key={item.id} />
             ))}
-          </CardSliderWrapper>
+          </CardSlider>
         )}
       </ContentLayoutWrapper>
     </div>
