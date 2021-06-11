@@ -1,12 +1,3 @@
-import "swiper/swiper-bundle.min.css"
-import { Swiper, SwiperSlide } from "swiper/react"
-import SwiperCore, {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  Controller
-} from "swiper"
 import { Link, useLocation } from "react-router-dom"
 import { FaAngleRight } from "react-icons/fa"
 import { useDispatch, useSelector } from "react-redux"
@@ -20,8 +11,6 @@ import MovieInfoDialog from "components/MovieInfoDialog"
 import { openCinemaDialog } from "appRedux/thunks/general/actions"
 import ContentLayoutWrapper from "containers/ContentLayoutWrapper"
 import CardSlider from "CustomComponents/CardSlider/CardSlider"
-
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Controller])
 
 const Movies = () => {
   const dispatch = useDispatch()

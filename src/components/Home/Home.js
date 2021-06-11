@@ -1,14 +1,5 @@
-import React, { useEffect, useState } from "react"
-import "swiper/swiper-bundle.min.css"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Swiper, SwiperSlide } from "swiper/react"
-import SwiperCore, {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  Controller
-} from "swiper"
 import { fetchAllTrending } from "appRedux/thunks/trending/actions"
 import MediaFlashCard from "components/MediaFlashCard"
 import { FaAngleRight } from "react-icons/fa"
@@ -18,8 +9,6 @@ import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
 import ContentLayoutWrapper from "containers/ContentLayoutWrapper"
 import CardSlider from "CustomComponents/CardSlider/CardSlider"
 import WelcomeSection from "./WelcomSection"
-
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Controller])
 
 const Home = () => {
   const dispatch = useDispatch()

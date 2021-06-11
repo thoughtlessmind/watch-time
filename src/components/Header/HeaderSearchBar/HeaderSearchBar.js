@@ -19,6 +19,7 @@ const HeaderSearchBar = (props) => {
           spellCheck='false'
           id='header-search-bar'
           placeholder='Search for a movie, tv show, person......'
+          className='rounded'
         />
       </label>
       <label className='searchIconContainer'>
