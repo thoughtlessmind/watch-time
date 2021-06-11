@@ -1,10 +1,9 @@
-
 .welcomeSectionContainer {
-  --slide-up-transition: transform 600ms ease-in-out;
-  
+  --slide-up-transition: transform 400ms ease-in-out;
+  --search-submit-btn-gap: 2px
 }
 
-.upperContainer{
+.upperContainer {
   transform: translateY(0%);
   transition: var(--slide-up-transition);
 }
@@ -19,7 +18,7 @@
   transform: translateY(-100%);
 }
 
-.searchFormContainer{
+.searchFormContainer {
   transition: var(--slide-up-transition);
   transform: translateY(0);
 }
@@ -41,12 +40,12 @@
 .searchSubmitBtn {
   display: inline-flex;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: var(--search-submit-btn-gap);
+  right: var(--search-submit-btn-gap);
   border-radius: 999999px;
   background-color: #111827;
   color: #fff;
-  height: 100%;
+  height: calc(100% - (2* var(--search-submit-btn-gap)));
   width: 120px;
   display: inline-flex;
   align-items: center;

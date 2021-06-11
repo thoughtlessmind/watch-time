@@ -18,6 +18,7 @@ import { fetchTopRatedMovies } from "appRedux/thunks/movies/actions"
 import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
 import MovieInfoDialog from "components/MovieInfoDialog"
 import { openCinemaDialog } from "appRedux/thunks/general/actions"
+import ContentLayoutWrapper from "containers/ContentLayoutWrapper"
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Controller])
 
@@ -33,7 +34,7 @@ const Movies = () => {
   }, [])
 
   return (
-    <div>
+    <ContentLayoutWrapper>
       <h2 className='text-3xl text-secondary-main font-bold mb-4'>
         Explore Movies
       </h2>
@@ -65,7 +66,7 @@ const Movies = () => {
         </CardSliderWrapper>
       </div>
       {/* <MovieInfoDialog /> */}
-    </div>
+    </ContentLayoutWrapper>
   )
 }
 

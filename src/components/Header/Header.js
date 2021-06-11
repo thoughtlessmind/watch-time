@@ -2,6 +2,7 @@ import clsx from "clsx"
 import React, { useState } from "react"
 import { FaBars } from "react-icons/fa"
 import { Link } from "react-router-dom"
+import HeaderSearchBar from "./HeaderSearchBar"
 
 const headerNavLinks = [
   {
@@ -41,10 +42,13 @@ const Header = () => {
         >
           Watch Time
         </Link>
-        <input
+        <div className='col-span-6 lg:col-span-4 opacity-70 rounded px-2 '> 
+          <HeaderSearchBar />
+        </div>
+        {/* <input
           className='col-span-6 lg:col-span-4 opacity-70 rounded px-2 '
           placeholder='Search Movies and Shows...'
-        />
+        /> */}
         <div className='col-span-2 lg:col-span-5 px-3 col-start-11 col-end-12 md:col-start-12 my-auto'>
           <FaBars
             onClick={handleNavSideBar}
