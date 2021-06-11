@@ -42,7 +42,7 @@ const MediaFlashCard = (props) => {
           alt='Movie Poster'
         />
         <div className='p-2'>
-          <p className='flex items-center gap-0.5 text-sm font-medium'>
+          <p className='flex items-center gap-0.5 text-xs font-medium'>
             <FaStar className='text-yellow-400 mr-1' /> {cardData.vote_average}
             <span className='ml-auto'>
               {getMonthYearString(
@@ -50,7 +50,7 @@ const MediaFlashCard = (props) => {
               )}
             </span>
           </p>
-          <p className='text-base font-medium '>
+          <p className='text-sm font-medium '>
             {cardData.original_title || cardData.original_name}
           </p>
         </div>

@@ -1,0 +1,56 @@
+.welcome-suggestionsList{
+  max-height: 300px;
+  position: absolute;
+  overflow-y: auto;
+  width: 100%;
+  background-color: #fff;
+  color: #000;
+  margin-top: -4px;
+  padding: 8px;
+  border-radius: 4px;
+  margin-top: -26px;
+  padding-top: 30px;
+  z-index: -1;
+
+  li{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    // padding: 0 8px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    transition: 0.1s ease;
+    &:hover {
+      background-color:  var(--color-primary-main);
+      color: var(--color-secondary-main)
+    }
+
+    img{
+      height: 60px;
+      width: 40px;
+      font-size: 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    span.text-info{
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-start;
+
+      & .name{
+        font-weight: 500;
+        font-size: 0.85rem;
+      }
+
+      & .year {
+        font-size: 0.75rem;
+      }
+    }
+  }
+}

@@ -1,21 +1,63 @@
+import { handleSearchSuggestions } from "appRedux/thunks/general/actions"
 import clsx from "clsx"
+import tmdbContants from "constants/tmdbContants"
+import useDebouncedEffect from "hooks"
 import { useEffect, useRef, useState } from "react"
+import { useHistory } from "react-router-dom"
 import "./welcomSection.css"
+import stlyes from "./welcomeSection.scss"
 
 const WelcomeSection = () => {
   const searchInputRef = useRef(null)
+  const history = useHistory()
   const [isInputFocused, setIsInputFocused] = useState(false)
   const [searchInputValue, setSearchInputValue] = useState("")
+  const [suggestionData, setSuggestionData] = useState([])
+  const [showSuggestionList, setShowSuggestionList] = useState(false)
 
   const handleSearchSubmit = (e) => {
     e.preventDefault()
-    alert(
-      "work in progress. Please revisit/check by 22 May. \n Thank for visiting"
-    )
   }
 
   const handleSearchInputChange = (e) => {
     setSearchInputValue(e.target.value)
+  }
+
+  const handleInputFocus = () => {
+    setIsInputFocused(true)
+    setShowSuggestionList(suggestionData?.length > 0)
+  }
+
+  const handleInputBlurfocus = () => {
+    if (suggestionData?.length > 0) {
+      setTimeout(() => {
+        setIsInputFocused(false)
+        setShowSuggestionList(false)
+      }, 100)
+    } else {
+      setIsInputFocused(false)
+      setShowSuggestionList(false)
+    }
+  }
+
+  const logRes = async (term) => {
+    const data = await handleSearchSuggestions(term)
+    setSuggestionData(data)
+    setShowSuggestionList(Boolean(data?.length))
+    console.log(data)
+  }
+
+  useDebouncedEffect(
+    () => {
+      logRes(searchInputValue)
+    },
+    [searchInputValue],
+    500
+  )
+
+  const navigateToSinglePage = (mediaType, id) => {
+    history.push(`/${mediaType}/${id}`)
+    setShowSuggestionList(false)
   }
 
   return (
@@ -47,8 +89,8 @@ const WelcomeSection = () => {
                   autoComplete='off'
                   spellCheck='false'
                   onChange={handleSearchInputChange}
-                  onFocus={() => setIsInputFocused(true)}
-                  onBlur={() => setIsInputFocused(false)}
+                  onFocus={handleInputFocus}
+                  onBlur={handleInputBlurfocus}
                   id='searchBox'
                   placeholder='Search for a movie, tv show, person......'
                   value={searchInputValue}
@@ -56,6 +98,38 @@ const WelcomeSection = () => {
               </lable>
               <input className='searchSubmitBtn' type='submit' value='Search' />
             </form>
+            {showSuggestionList && (
+              <ul className='welcome-suggestionsList'>
+                {suggestionData?.map((data) => (
+                  // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+                  <li
+                    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
+                    role='button'
+                    onClick={() =>
+                      navigateToSinglePage(data.media_type, data.id)
+                    }
+                  >
+                    <img
+                      alt={data.name || data.title}
+                      src={
+                        tmdbContants.posterPath +
+                        (data.poster_path || data.profile_path)
+                      }
+                    />
+                    <span className='text-info'>
+                      <span className='name'>{data.name || data.title}</span>
+                      <span className='year'>
+                        {data.known_for_department
+                          ? data.known_for_department
+                          : new Date(
+                              data.release_date || data.first_air_date
+                            ).getFullYear()}
+                      </span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </div>
