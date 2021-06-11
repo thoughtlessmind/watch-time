@@ -41,7 +41,7 @@ const Header = () => {
         >
           Watch Time
         </Link>
-        <div className='col-span-6 lg:col-span-4 opacity-70 rounded px-2 '>
+        <div className='col-span-6 lg:col-span-4 rounded px-2 '>
           <HeaderSearchBar />
         </div>
         <div className='col-span-2 lg:col-span-5 px-3 col-start-11 col-end-12 md:col-start-12 my-auto'>
