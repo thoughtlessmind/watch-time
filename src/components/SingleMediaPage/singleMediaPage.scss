@@ -1,0 +1,46 @@
+.bg-wrapper{
+  position: absolute;
+  width: calc(100vw - 6px);
+  height: calc(100% + 20px);
+  margin-top: -20px;
+  top: 0;
+  box-sizing: border-box;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  overflow: hidden;
+  background-image: url('https://www.themoviedb.org/t/p/w600_and_h900_bestv2/4kIRrW1AlHP5Idne8CPHeQt8nR5.jpg');
+
+  box-sizing: border-box;
+  content: ' ';
+  z-index: 0;
+
+  --backdrop-background: inear-gradient(
+    to bottom right,
+    rgba(63, 222, 129, 0.633),
+    rgba(30, 30, 30, 0.66)
+  );
+  
+}
+
+.bg-wrapper::after {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right bottom,
+    from(#080b12),
+    to(rgba(0, 1, 2, 0.78))
+  );
+  background: linear-gradient(
+    to bottom right,
+    var(--backdrop-bg-gradiant-color-1),
+    var(--backdrop-bg-gradiant-color-2)
+  );
+  // background: var(--backdrop-background);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: ' ';
+}
