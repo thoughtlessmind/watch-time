@@ -24,3 +24,4 @@ _This project is still under construction (In Development)_
 
 - Creating weback and babel configuration from scratch for working of react and react-dom.
 - Creating Hight order components efficiently
+- Setting up prettier and eslint for code styles
