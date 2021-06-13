@@ -1,19 +1,43 @@
-import { handleSearchSuggestions } from "appRedux/thunks/general/actions"
+import {
+  handleSearchSuggestions,
+  toggleHeaderSearchBarVisibility
+} from "appRedux/thunks/general/actions"
 import clsx from "clsx"
 import tmdbContants from "constants/tmdbContants"
 import useDebouncedEffect from "hooks"
 import { useEffect, useRef, useState } from "react"
 import { useHistory } from "react-router-dom"
 import "./welcomSection.css"
-import stlyes from "./welcomeSection.scss"
+import isInViewport from "utils"
+import "./welcomeSection.scss"
+import { useDispatch } from "react-redux"
 
 const WelcomeSection = () => {
   const searchInputRef = useRef(null)
   const history = useHistory()
+  const dispatch = useDispatch()
   const [isInputFocused, setIsInputFocused] = useState(false)
   const [searchInputValue, setSearchInputValue] = useState("")
   const [suggestionData, setSuggestionData] = useState([])
   const [showSuggestionList, setShowSuggestionList] = useState(false)
+
+  useEffect(() => {
+    const controller = new AbortController()
+
+    const fn = () => {
+      if (searchInputRef.current) {
+        if (isInViewport(searchInputRef.current))
+          dispatch(toggleHeaderSearchBarVisibility(false))
+        else dispatch(toggleHeaderSearchBarVisibility(true))
+      }
+    }
+
+    if (searchInputRef.current)
+      document.addEventListener("scroll", fn, { signal: controller.signal })
+    return () => {
+      controller.abort()
+    }
+  }, [searchInputRef])
 
   const handleSearchSubmit = (e) => {
     e.preventDefault()
@@ -44,7 +68,6 @@ const WelcomeSection = () => {
     const data = await handleSearchSuggestions(term)
     setSuggestionData(data)
     setShowSuggestionList(Boolean(data?.length))
-    console.log(data)
   }
 
   useDebouncedEffect(

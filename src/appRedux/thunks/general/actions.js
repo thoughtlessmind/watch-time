@@ -29,3 +29,13 @@ export const handleSearchSuggestions = async (searchTerm, page = 1) => {
     return res.data.results
   }
 }
+
+/**
+ * Control the visibility of the header search bar
+ * @param {Boolean} isVisible Visibility control
+ */
+export const toggleHeaderSearchBarVisibility = (isVisible) => {
+  return (dispatch) => {
+    dispatch({ type: GENERAL.TOGGLE_HEADER_SEARCHBAR, payload: isVisible })
+  }
+}

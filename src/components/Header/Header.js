@@ -1,6 +1,7 @@
 import clsx from "clsx"
 import { useState } from "react"
 import { FaBars } from "react-icons/fa"
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import HeaderSearchBar from "./HeaderSearchBar"
 
@@ -24,6 +25,9 @@ const headerNavLinks = [
 ]
 
 const Header = () => {
+  const isSearchbarVisible = useSelector(
+    (state) => state.general.headerSearchbarVisible
+  )
   const [isOpen, setIsOpen] = useState(false)
 
   const handleNavSideBar = (e) => {
@@ -42,7 +46,7 @@ const Header = () => {
           Watch Time
         </Link>
         <div className='col-span-6 lg:col-span-4 rounded px-2 '>
-          <HeaderSearchBar />
+          {isSearchbarVisible && <HeaderSearchBar />}
         </div>
         <div className='col-span-2 lg:col-span-5 px-3 col-start-11 col-end-12 md:col-start-12 my-auto'>
           <FaBars
