@@ -7,6 +7,7 @@ import { fetchTrendingMovies } from "appRedux/thunks/trending/actions"
 import PaginationButtons from "CustomComponents/Pagination"
 import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
 import { openCinemaDialog } from "appRedux/thunks/general/actions"
+import ContentLayoutWrapper from "containers/ContentLayoutWrapper"
 
 const TrendingMovies = (props) => {
   const {
@@ -23,7 +24,7 @@ const TrendingMovies = (props) => {
   }, [page])
 
   return (
-    <div>
+    <ContentLayoutWrapper>
       <SectionTitle>Trending Movies</SectionTitle>
       <div className='gridContainer grid gap-4 lg:gap-x-6 gap-y-8 mt-4'>
         {trendingData.loading.all
@@ -36,7 +37,7 @@ const TrendingMovies = (props) => {
         currentPage={currentPage}
         basePath='/movies/trending'
       />
-    </div>
+    </ContentLayoutWrapper>
   )
 }
 

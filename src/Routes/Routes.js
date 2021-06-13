@@ -7,6 +7,7 @@ import { Switch, BrowserRouter, Route } from "react-router-dom"
 import TrendingMovies from "components/TrendingMovies"
 import TopMovies from "components/TopMovies/TopMovies"
 import MovieInfoDialog from "components/MovieInfoDialog"
+import SingleMediaPage from "components/SingleMediaPage"
 
 const Routes = () => {
   const a = "a"
@@ -31,6 +32,12 @@ const Routes = () => {
           </Route> */}
           <Route path='/movies'>
             <Movies />
+          </Route>
+          <Route path='/movie/:mediaId'>
+            <SingleMediaPage />
+          </Route>
+          <Route path='/tv/:mediaId'>
+            <SingleMediaPage />
           </Route>
         </Switch>
       </App>
