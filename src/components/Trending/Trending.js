@@ -2,15 +2,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom"
 import PropTypes from "prop-types"
-import "./trending.css"
 import { fetchAllTrending } from "appRedux/thunks/trending/actions"
 import MediaFlashCard from "components/MediaFlashCard"
 import PaginationButtons from "CustomComponents/Pagination"
 import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
-import { openCinemaDialog } from "appRedux/thunks/general/actions"
+import { toggleHeaderSearchBarVisibility } from "appRedux/thunks/general/actions"
 import ContentLayoutWrapper from "containers/ContentLayoutWrapper"
+import "./trending.css"
 
 const Trending = (props) => {
   const {
@@ -21,11 +21,12 @@ const Trending = (props) => {
   const [currentPage, setCurrentPage] = useState("1")
 
   useEffect(() => {
+    dispatch(toggleHeaderSearchBarVisibility(true))
+    window.scrollTo(0, 0)
     dispatch(fetchAllTrending())
   }, [])
 
   useEffect(() => {
-    console.log(page)
     const currPage = page.split("=")?.[1] ?? "1"
     setCurrentPage(parseInt(currPage, 10))
     dispatch(fetchAllTrending(parseInt(currPage, 10)))
@@ -33,7 +34,6 @@ const Trending = (props) => {
 
   return (
     <ContentLayoutWrapper>
-      {/* <h2 className='text-2xl font-semibold mb-2'>Trending</h2> */}
       <SectionTitle className='mb-4'>Trending</SectionTitle>
       <div className='gridContainer xs:grid gap-4 lg:gap-x-6 gap-y-8'>
         {trendingData.loading.all

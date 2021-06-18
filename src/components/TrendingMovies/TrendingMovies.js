@@ -6,7 +6,7 @@ import MediaFlashCard from "components/MediaFlashCard"
 import { fetchTrendingMovies } from "appRedux/thunks/trending/actions"
 import PaginationButtons from "CustomComponents/Pagination"
 import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
-import { openCinemaDialog } from "appRedux/thunks/general/actions"
+import { toggleHeaderSearchBarVisibility } from "appRedux/thunks/general/actions"
 import ContentLayoutWrapper from "containers/ContentLayoutWrapper"
 
 const TrendingMovies = (props) => {
@@ -22,6 +22,11 @@ const TrendingMovies = (props) => {
     setCurrentPage(parseInt(currPage, 10))
     dispatch(fetchTrendingMovies(parseInt(currPage, 10)))
   }, [page])
+
+  useEffect(() => {
+    dispatch(toggleHeaderSearchBarVisibility(true))
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <ContentLayoutWrapper>

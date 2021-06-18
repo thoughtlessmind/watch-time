@@ -8,6 +8,7 @@ import tmdbContants from "constants/tmdbContants"
 import ContentLayoutWrapper from "containers/ContentLayoutWrapper"
 import RingRating from "CustomComponents/RingRating/RingRating"
 import "./singleMediaPage.scss"
+import { toggleHeaderSearchBarVisibility } from "appRedux/thunks/general/actions"
 
 const SingleMediaPage = () => {
   const dispatch = useDispatch()
@@ -29,6 +30,11 @@ const SingleMediaPage = () => {
     if (pathname.includes("tv")) dispatch(fetchSingleTvShowData(mediaId))
     else dispatch(fetchSingleMovieData(mediaId))
   }, [mediaId])
+
+  useEffect(() => {
+    dispatch(toggleHeaderSearchBarVisibility(true))
+    window.scrollTo(0, 0)
+  }, [])
 
   useEffect(() => {
     if (pathname.includes("tv")) setCurrentMediaData(tvShowSingle?.[mediaId])
@@ -60,7 +66,7 @@ const SingleMediaPage = () => {
                   )
                 </span>
               </h1>
-              <h4 className='text-xl opacity-80'>
+              <h4 className='text-xl font-light opacity-80'>
                 {currentMediaData?.tagline}
               </h4>
               <div className='mt-4 flex items-center gap-2'>

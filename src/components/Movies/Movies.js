@@ -1,14 +1,11 @@
-import { Link, useLocation } from "react-router-dom"
-import { FaAngleRight } from "react-icons/fa"
+import { useEffect } from "react"
+import { useLocation } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect, useState } from "react"
 import { fetchTrendingMovies } from "appRedux/thunks/trending/actions"
-import CardSliderWrapper from "CustomComponents/CardSlider"
 import MediaFlashCard from "components/MediaFlashCard"
 import { fetchTopRatedMovies } from "appRedux/thunks/movies/actions"
 import SectionTitle from "CustomComponents/SectionTitle/SectionTitle"
-import MovieInfoDialog from "components/MovieInfoDialog"
-import { openCinemaDialog } from "appRedux/thunks/general/actions"
+import { toggleHeaderSearchBarVisibility } from "appRedux/thunks/general/actions"
 import ContentLayoutWrapper from "containers/ContentLayoutWrapper"
 import CardSlider from "CustomComponents/CardSlider/CardSlider"
 
@@ -16,11 +13,12 @@ const Movies = () => {
   const dispatch = useDispatch()
   const location = useLocation()
   const trendingData = useSelector((state) => state.trending)
-  const moviesData = useSelector((state) => state.movies)
 
   useEffect(() => {
     dispatch(fetchTrendingMovies())
     dispatch(fetchTopRatedMovies())
+    dispatch(toggleHeaderSearchBarVisibility(true))
+    window.scrollTo(0, 0)
   }, [])
 
   return (

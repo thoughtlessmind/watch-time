@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import Dialog from "CustomComponents/Dialog"
@@ -134,32 +133,3 @@ const MovieInfoDialog = () => {
 }
 
 export default MovieInfoDialog
-
-// Example of using condition props in styled-component
-
-/**
-  const DialogWrapper = styled.div`
-  padding: 16px;
-  overflow-y: scroll;
-  position: relative;
-  ${(props) =>
-    props.posterBg &&
-    css`
-      &:before {
-        background: url(${props.posterBg});
-        box-sizing: border-box;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-        color: black;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        content: " ";
-        z-index: -2;
-      }
-    `}
-`
- */

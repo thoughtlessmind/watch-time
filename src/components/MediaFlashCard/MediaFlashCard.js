@@ -1,8 +1,8 @@
 import { FaInfoCircle, FaStar } from "react-icons/fa"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
-import { openCinemaDialog } from "appRedux/thunks/general/actions"
 import { useDispatch } from "react-redux"
+import { openCinemaDialog } from "appRedux/thunks/general/actions"
 import "./mediaFlashCard.css"
 
 const MediaFlashCard = (props) => {

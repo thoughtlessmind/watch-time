@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { handleSearchSuggestions } from "appRedux/thunks/general/actions"
 import clsx from "clsx"
-import tmdbContants from "constants/tmdbContants"
-import useDebouncedEffect from "hooks"
 import PropTypes from "prop-types"
 import { useState } from "react"
 import { FaSearch } from "react-icons/fa"
 import { useHistory } from "react-router-dom"
+import { handleSearchSuggestions } from "appRedux/thunks/general/actions"
+import tmdbContants from "constants/tmdbContants"
+import useDebouncedEffect from "hooks"
 import "./headerSearchBar.scss"
 
 const HeaderSearchBar = (props) => {
@@ -22,7 +22,6 @@ const HeaderSearchBar = (props) => {
     const data = await handleSearchSuggestions(term)
     setSuggestionData(data)
     setShowSuggestionList(Boolean(data?.length))
-    console.log(data)
   }
 
   useDebouncedEffect(
@@ -36,6 +35,7 @@ const HeaderSearchBar = (props) => {
   const navigateToSinglePage = (mediaType, id) => {
     history.push(`/${mediaType}/${id}`)
     setShowSuggestionList(false)
+    setValue("")
   }
 
   return (
@@ -50,9 +50,10 @@ const HeaderSearchBar = (props) => {
             name='query'
             // eslint-disable-next-line jsx-a11y/tabindex-no-positive
             tabIndex='1'
-            onBlur={() => setTimeout(() => setShowSuggestionList(false), 100)}
+            onBlur={() => setTimeout(() => setShowSuggestionList(false), 200)}
             onFocus={() => setShowSuggestionList(suggestionData?.length)}
             onChange={(e) => setValue(e.target.value)}
+            value={value}
             autoCorrect='off'
             autofill='off'
             autoComplete='off'
