@@ -57,7 +57,7 @@ const WelcomeSection = () => {
       setTimeout(() => {
         setIsInputFocused(false)
         setShowSuggestionList(false)
-      }, 100)
+      }, 200)
     } else {
       setIsInputFocused(false)
       setShowSuggestionList(false)

@@ -40,7 +40,7 @@ const SingleMediaPage = () => {
       {currentMediaData && (
         <div>
           <div className='grid grid-cols-8 gap-2 md:gap-4 text-white relative'>
-            <div className='bg-wrapper md:-left-12 -left-2' />
+            {/* <div className='bg-wrapper md:-left-12 -left-2' /> */}
             <div className='col-span-2 rounded'>
               <img
                 className='rounded'
