@@ -42,7 +42,7 @@ const CardSlider = (props) => {
   return (
     <div className='sliederContainer'>
       <span
-        className={clsx("nav-icon left-icon", {
+        className={clsx("nav-icon left-icon shadow-md", {
           hide: !showScrollBtns.left
         })}
         onClick={() => handleScrollBtnClick("left")}
@@ -52,7 +52,7 @@ const CardSlider = (props) => {
         <FaChevronLeft />
       </span>
       <span
-        className={clsx("nav-icon right-icon", {
+        className={clsx("nav-icon right-icon shadow-md", {
           hide: !showScrollBtns.right
         })}
         onClick={() => handleScrollBtnClick("right")}

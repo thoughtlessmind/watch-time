@@ -22,6 +22,10 @@ const WelcomeSection = () => {
   const [showSuggestionList, setShowSuggestionList] = useState(false)
 
   useEffect(() => {
+    dispatch(toggleHeaderSearchBarVisibility(false))
+  }, [])
+
+  useEffect(() => {
     const controller = new AbortController()
 
     const fn = () => {

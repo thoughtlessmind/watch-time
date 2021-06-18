@@ -33,12 +33,34 @@ export const fetchSingleMovieData = (movieId) => {
         url: `/movie/${movieId}`,
         params: {
           append_to_response:
-            "images,videos,credits,certification,watch/providers"
+            "images,videos,credits,certification,watch/providers,media_type"
         }
       })
       dispatch({ type: MOVIES.FETCHED.SINGLE, payload: res.data })
     } catch (err) {
       dispatch({ type: MOVIES.ERROR.SINGLE, payload: err })
+    }
+  }
+}
+
+/**
+ * Get the upcoming movies
+ */
+export const fetchUpcomingMoviesData = () => {
+  return async (dispatch) => {
+    dispatch({ type: MOVIES.FETCHING.UPCOMING })
+    try {
+      const res = await axios({
+        method: "GET",
+        url: `/movie/upcoming`,
+        params: {
+          append_to_response:
+            "images,videos,credits,certification,watch/providers"
+        }
+      })
+      dispatch({ type: MOVIES.FETCHED.UPCOMING, payload: res.data })
+    } catch (err) {
+      dispatch({ type: MOVIES.ERROR.UPCOMING, payload: err })
     }
   }
 }

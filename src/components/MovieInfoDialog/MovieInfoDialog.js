@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import Dialog from "CustomComponents/Dialog"
 import { fetchSingleMovieData } from "appRedux/thunks/movies/actions"
 import { closCinemaDialog } from "appRedux/thunks/general/actions"
@@ -68,7 +69,11 @@ const MovieInfoDialog = () => {
             <div className='dialogWrapper'>
               <div className='grid pt-4 md:pt-8 lg:pt-12 grid-cols-5 gap-2 text-white'>
                 <div className=' pl-4 col-span-3'>
-                  <h4 className='text-3xl font-medium'>
+                  <Link
+                    to={`/${cinemaDialogData.cinemaType}/${currentMovieData?.id}`}
+                    className='text-3xl font-medium'
+                    onClick={() => dispatch(closCinemaDialog())}
+                  >
                     {currentMovieData && currentMovieData?.name
                       ? currentMovieData?.name
                       : currentMovieData?.original_title
@@ -85,7 +90,7 @@ const MovieInfoDialog = () => {
                           ).getFullYear()}
                       &nbsp;)
                     </span>
-                  </h4>
+                  </Link>
                   <p className='font-medium  mb-2 mt-1'>
                     {currentMovieData?.tagline}
                   </p>

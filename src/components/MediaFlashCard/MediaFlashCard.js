@@ -6,7 +6,7 @@ import { openCinemaDialog } from "appRedux/thunks/general/actions"
 import "./mediaFlashCard.css"
 
 const MediaFlashCard = (props) => {
-  const { cardData, onClick, ...restProps } = props
+  const { cardData, onClick, mediaType, ...restProps } = props
   const dispatch = useDispatch()
   const getMonthYearString = (dateString) => {
     const d = new Date(dateString)
@@ -20,7 +20,7 @@ const MediaFlashCard = (props) => {
     dispatch(openCinemaDialog(cardData.id, cardData.media_type))
   }
   return (
-    <Link to={`/${cardData.media_type}/${cardData.id}`}>
+    <Link to={`/${cardData?.media_type ?? mediaType}/${cardData.id}`}>
       <div
         component='a'
         tabIndex={0}
@@ -70,11 +70,13 @@ MediaFlashCard.propTypes = {
     id: PropTypes.number,
     media_type: PropTypes.string
   }).isRequired,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  mediaType: PropTypes.string
 }
 
 MediaFlashCard.defaultProps = {
-  onClick: null
+  onClick: null,
+  mediaType: undefined
 }
 
 export default MediaFlashCard
