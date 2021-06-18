@@ -1,12 +1,10 @@
 import Home from "components/Home"
 import Movies from "components/Movies/Movies"
 import Trending from "components/Trending"
-// import { App } from "containers"
 import App from "containers/App/App"
 import { Switch, BrowserRouter, Route } from "react-router-dom"
 import TrendingMovies from "components/TrendingMovies"
 import TopMovies from "components/TopMovies/TopMovies"
-import MovieInfoDialog from "components/MovieInfoDialog"
 import SingleMediaPage from "components/SingleMediaPage"
 
 const Routes = () => {

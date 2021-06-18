@@ -4,9 +4,9 @@ import Dialog from "CustomComponents/Dialog"
 import { fetchSingleMovieData } from "appRedux/thunks/movies/actions"
 import { closCinemaDialog } from "appRedux/thunks/general/actions"
 import RingRating from "CustomComponents/RingRating/RingRating"
-import PersonList from "CustomComponents/PseronsList/PersonList"
 import { fetchSingleTvShowData } from "appRedux/thunks/tv/actions"
 import "./moviInfoDialog.css"
+import MiniAvatarCard from "CustomComponents/MiniAvatarCard"
 
 const MovieInfoDialog = () => {
   const cinemaDialogData = useSelector((state) => state.general.cinemaDialog)
@@ -114,14 +114,21 @@ const MovieInfoDialog = () => {
                   />
                 </div>
               </div>
-              <div>
+              <div className='mt-4 p-4'>
                 <p className='text-white font-medium text-lg mb-4'>
                   Top Billed Casts
                 </p>
-                <div>
-                  <PersonList
-                    personsArr={currentMovieData?.credits?.cast ?? []}
-                  />
+                <div className='grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4'>
+                  {currentMovieData?.credits?.cast?.map((cast) => (
+                    <MiniAvatarCard
+                      className='col-span-1'
+                      title={cast.name}
+                      subtitle={cast.character}
+                      profilePic={cast.profile_path}
+                      id={cast.id}
+                      key={cast.id}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
